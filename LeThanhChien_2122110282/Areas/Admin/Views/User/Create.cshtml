@@ -1,0 +1,85 @@
+﻿@model LeThanhChien_2122110282.Context.User
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 style="text-align:center">Thêm thành viên</h2>
+
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thành viên mới</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Field</th>
+                    <th>Input</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- First Name -->
+                <tr>
+                    <td>@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })</td>
+                    <td>
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <!-- Last Name -->
+                <tr>
+                    <td>@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })</td>
+                    <td>
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <!-- Email -->
+                <tr>
+                    <td>@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })</td>
+                    <td>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <!-- Password -->
+                <tr>
+                    <td>@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })</td>
+                    <td>
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <!-- Is Admin -->
+                <tr>
+                    <td>@Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label" })</td>
+                    <td>
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsAdmin)
+                            @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "UserList", "User", new { @class = "btn btn-secondary" })
+</div>

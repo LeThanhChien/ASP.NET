@@ -1,0 +1,55 @@
+﻿@model LeThanhChien_2122110282.Context.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y" style="min-height:84vh">
+    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {<div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>}
+                <h4 class="card-title mb-4">Đăng nhập</h4>
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "password", @placeholder = "Mật khẩu" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-primary btn-block" value="Đăng nhập" />
+                    </div>
+                    <div class="form-group">
+                        <label class="float-left custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="showPassword">
+                            <div class="custom-control-label"> Xem mật khẩu </div>
+                        </label>
+                    </div> <!-- form-group form-check .// -->
+                }
+            </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+    <p class="text-center mt-4">Bạn chưa có tài khoản? @Html.ActionLink("Đăng ký", "Register", "UserRegister")</p>
+    <br><br>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- JavaScript to toggle password visibility -->
+<script>
+    document.getElementById('showPassword').addEventListener('change', function () {
+        var passwordField = document.getElementById('password');
+        if (this.checked) {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+</script>

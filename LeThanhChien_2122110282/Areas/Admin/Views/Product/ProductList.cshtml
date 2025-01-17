@@ -1,0 +1,200 @@
+﻿@model IEnumerable<LeThanhChien_2122110282.Context.Product>
+
+@{
+    ViewBag.Title = "ProductList";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <h2 class="text-center">Tất cả sản phẩm</h2>
+
+    <div class="container mt-3">
+        @using (Html.BeginForm("ProductList", "Product", FormMethod.Get, new { @class = "form-inline", id = "search-form" }))
+        {
+            <div class="form-group mr-2 mb-2">
+                <label for="searchBox" class="mr-2">Tìm tên sản phẩm:</label>
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @id = "searchBox" })
+            </div>
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        }
+    </div>
+
+    <p class="text-center">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success btn-block shadow-lg" })
+    </p>
+
+    <table class="table table-striped table-bordered table-hover shadow">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Avatar)</th>
+                <th>@Html.DisplayNameFor(model => model.CategoryId)</th>
+                <th>@Html.DisplayNameFor(model => model.ShortDes)</th>
+                <th>@Html.DisplayNameFor(model => model.FullDescription)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.PriceDiscount)</th>
+                <th>@Html.DisplayNameFor(model => model.TypeId)</th>
+                <th>@Html.DisplayNameFor(model => model.Slug)</th>
+                <th>@Html.DisplayNameFor(model => model.BrandId)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="product-table-body">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td><img src="@Url.Content("~/Content/images/items/" + item.Avatar)" alt="Avatar" class="img-thumbnail" /></td>
+                    <td>@Html.DisplayFor(modelItem => item.CategoryId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ShortDes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FullDescription)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceDiscount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TypeId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Slug)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BrandId)</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Product", new { id = item.Id })" class="btn btn-sm btn-info">
+                            <i class="far fa-eye"></i>
+                        </a>
+                        <a href="@Url.Action("Edit", "Product", new { id = item.Id })" class="btn btn-sm btn-primary">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Product", new { id = item.Id })" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+    </table>
+
+    <nav class="mb-4" aria-label="Page navigation sample">
+        <ul class="pagination justify-content-center" id="pagination-controls">
+
+            <nav class="mb-4" aria-label="Page navigation sample">
+                <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </ul>
+    </nav>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const pageSize = 10; // Số sản phẩm trên mỗi trang
+            let currentPage = 1;
+            let searchString = document.getElementById('searchBox').value;
+
+            document.getElementById('search-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                searchString = document.getElementById('searchBox').value;
+                currentPage = 1;
+                fetchProducts(currentPage, searchString);
+            });
+
+            function fetchProducts(page, searchString) {
+                fetch(`/Admin/Product/GetProducts?page=${page}&pageSize=${pageSize}&searchString=${searchString}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data.Products);
+                        renderPagination(data.TotalPages, data.CurrentPage);
+                    })
+                    .catch(error => console.error('Error fetching products:', error));
+            }
+
+            function renderTable(products) {
+                const tableBody = document.getElementById('product-table-body');
+                tableBody.innerHTML = '';
+                products.forEach(product => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${product.Name}</td>
+                        <td><img src="/Content/images/items/${product.Avatar}" alt="Avatar" class="img-thumbnail" /></td>
+                        <td>${product.CategoryId}</td>
+                        <td>${product.ShortDes}</td>
+                        <td>${product.FullDescription}</td>
+                        <td>${product.Price}</td>
+                        <td>${product.PriceDiscount}</td>
+                        <td>${product.TypeId}</td>
+                        <td>${product.Slug}</td>
+                        <td>${product.BrandId}</td>
+                        <td>
+                            <a href="/Admin/Product/Details/${product.Id}" class="btn btn-sm btn-info"><i class="far fa-eye"></i></a>
+                            <a href="/Admin/Product/Edit/${product.Id}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="/Admin/Product/Delete/${product.Id}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function renderPagination(totalPages, currentPage) {
+                const paginationControls = document.getElementById('pagination-controls');
+                paginationControls.innerHTML = '';
+
+                if (currentPage > 1) {
+                    const prevLi = document.createElement('li');
+                    prevLi.className = 'page-item';
+                    prevLi.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+                    prevLi.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        currentPage--;
+                        fetchProducts(currentPage, searchString);
+                    });
+                    paginationControls.appendChild(prevLi);
+                } else {
+                    const prevLi = document.createElement('li');
+                    prevLi.className = 'page-item disabled';
+                    prevLi.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+                    paginationControls.appendChild(prevLi);
+                }
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const li = document.createElement('li');
+                    li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                    li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                    li.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        currentPage = i;
+                        fetchProducts(currentPage, searchString);
+                    });
+                    paginationControls.appendChild(li);
+                }
+
+                if (currentPage < totalPages) {
+                    const nextLi = document.createElement('li');
+                    nextLi.className = 'page-item';
+                    nextLi.innerHTML = `<a class="page-link" href="#">Next</a>`;
+                    nextLi.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        currentPage++;
+                        fetchProducts(currentPage, searchString);
+                    });
+                    paginationControls.appendChild(nextLi);
+                } else {
+                    const nextLi = document.createElement('li');
+                    nextLi.className = 'page-item disabled';
+                    nextLi.innerHTML = `<a class="page-link" href="#">Next</a>`;
+                    paginationControls.appendChild(nextLi);
+                }
+            }
+
+            // Initial fetch
+            fetchProducts(currentPage, searchString);
+        });
+    </script>
+
+</body>
+</html>

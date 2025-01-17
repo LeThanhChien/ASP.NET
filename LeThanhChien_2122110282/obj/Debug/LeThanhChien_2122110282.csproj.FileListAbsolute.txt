@@ -77,3 +77,7 @@ D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\obj\Debug\LeThanhChien_2122
 D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\obj\Debug\LeThanhC.BC01F99D.Up2Date
 D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\obj\Debug\LeThanhChien_2122110282.dll
 D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\obj\Debug\LeThanhChien_2122110282.pdb
+D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\bin\EntityFramework.dll
+D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\bin\EntityFramework.SqlServer.dll
+D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\bin\EntityFramework.xml
+D:\1\LeThanhChien_2122110282\LeThanhChien_2122110282\bin\EntityFramework.SqlServer.xml

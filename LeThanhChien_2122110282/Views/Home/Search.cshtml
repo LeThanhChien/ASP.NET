@@ -1,0 +1,42 @@
+﻿@model IEnumerable<LeThanhChien_2122110282.Context.Product>
+
+@{
+    ViewBag.Title = "Search Results";
+}
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <figure class="card card-product-grid">
+                    <div class="img-wrap">
+                        <span class="badge badge-danger"> NEW </span>
+                        <a href="@Url.Action("Detail", "Product", new { Id = item.Id }, null)">
+                            <img src="~/Content/images/items/@item.Avatar">
+                        </a>
+                    </div> <!-- img-wrap.// -->
+                    <figcaption class="info-wrap">
+                        @Html.ActionLink(item.Name, "Detail", "Product", new { Id = item.Id }, null)
+                        <div class="price-wrap">
+                            <span class="price">@item.Price</span>
+                        </div> <!-- price-wrap.// -->
+
+
+                        <p class="text-muted ">@item.FullDescription</p>
+
+                        <hr />
+
+                        <a href="@Url.Action("Detail", "Product", new { Id = item.Id }, null)" class="btn btn-primary">Xem chi tiết</a>
+
+                    </figcaption>
+                </figure>
+            </div> <!-- col.// -->
+        }
+    </div>
+}
+else
+{
+    <p>Không tìm thấy sản phẩm</p>
+}

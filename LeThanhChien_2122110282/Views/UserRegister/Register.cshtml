@@ -1,81 +1,78 @@
-﻿
+﻿@model LeThanhChien_2122110282.Context.User
+
 @{
     ViewBag.Title = "Register";
 }
 
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
-
-    <!-- ============================ COMPONENT REGISTER   ================================= -->
-    <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+    <div class="card mx-auto" style="max-width: 520px; margin-top: 40px;">
         <article class="card-body">
-            <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
-            <form>
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label>First name</label>
-                        <input type="text" class="form-control" placeholder="">
-                    </div> <!-- form-group end.// -->
-                    <div class="col form-group">
-                        <label>Last name</label>
-                        <input type="text" class="form-control" placeholder="">
-                    </div> <!-- form-group end.// -->
-                </div> <!-- form-row end.// -->
+            <header class="mb-4">
+                <h4 class="card-title">Đăng ký</h4>
+            </header>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" placeholder="">
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div> <!-- form-group end.// -->
-                <div class="form-group">
-                    <label class="custom-control custom-radio custom-control-inline">
-                        <input class="custom-control-input" checked="" type="radio" name="gender" value="option1">
-                        <span class="custom-control-label"> Male </span>
-                    </label>
-                    <label class="custom-control custom-radio custom-control-inline">
-                        <input class="custom-control-input" type="radio" name="gender" value="option2">
-                        <span class="custom-control-label"> Female </span>
-                    </label>
-                </div> <!-- form-group end.// -->
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>City</label>
-                        <input type="text" class="form-control">
-                    </div> <!-- form-group end.// -->
-                    <div class="form-group col-md-6">
-                        <label>Country</label>
-                        <select id="inputState" class="form-control">
-                            <option> Choose...</option>
-                            <option>Uzbekistan</option>
-                            <option>Russia</option>
-                            <option selected="">United States</option>
-                            <option>India</option>
-                            <option>Afganistan</option>
-                        </select>
-                    </div> <!-- form-group end.// -->
-                </div> <!-- form-row.// -->
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Create password</label>
-                        <input class="form-control" type="password">
-                    </div> <!-- form-group end.// -->
-                    <div class="form-group col-md-6">
-                        <label>Repeat password</label>
-                        <input class="form-control" type="password">
-                    </div> <!-- form-group end.// -->
+                    @Html.LabelFor(model => model.FirstName)
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First name" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Register  </button>
-                </div> <!-- form-group// -->
+                    @Html.LabelFor(model => model.LastName)
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last name" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
                 <div class="form-group">
-                    <label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> I am agree with <a href="#">terms and contitions</a>  </div> </label>
-                </div> <!-- form-group end.// -->
-            </form>
+                    @Html.LabelFor(model => model.Email)
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "password", @placeholder = "Create password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="showPassword">
+                        <div class="custom-control-label">Xem mật khẩu</div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsAdmin)
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsAdmin)
+                        @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                </div>
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked="">
+                        <div class="custom-control-label">I agree with <a href="#">terms and conditions</a></div>
+                    </label>
+                </div>
+            }
         </article><!-- card-body.// -->
     </div> <!-- card .// -->
-    <p class="text-center mt-4">Have an account? <a href="">Log In</a></p>
+
+    <p class="text-center mt-4">Bạn đã có tài khoản? @Html.ActionLink("Đăng nhập", "Login", "Home")</p>
     <br><br>
-    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
-
-
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- JavaScript to toggle password visibility -->
+<script>
+    document.getElementById('showPassword').addEventListener('change', function() {
+        var passwordField = document.getElementById('password');
+        if (this.checked) {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+</script>
