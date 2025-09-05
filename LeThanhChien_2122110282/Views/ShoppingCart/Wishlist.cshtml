@@ -1,0 +1,398 @@
+﻿@model List<LeThanhChien_2122110282.Models.CartModel>
+
+@{
+    ViewBag.Title = "Danh sách yêu thích";
+
+    var discountedProductIds = ViewBag.DiscountedProductIds as List<int> ?? new List<int>();
+}
+
+
+<!-- jQuery (Use only one version) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- For confirmation dialogs -->
+
+<script>
+    $(document).ready(function () {
+        // Log URLs for debugging
+        console.log('RemoveFromWishlist URL:', '@Url.Action("RemoveFromWishlist", "ShoppingCart")');
+        console.log('AddToCart URL:', '@Url.Action("AddToCart", "ShoppingCart")');
+
+        // Remove item from wishlist
+        $(document).on('click', '.remove-wishlist-item', function (e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
+            var token = $('input[name="__RequestVerificationToken"]').val();
+
+            Swal.fire({
+                title: 'Xác nhận',
+                text: 'Bạn có chắc muốn xóa sản phẩm này khỏi danh sách yêu thích?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).prop('disabled', true).addClass('loading');
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("RemoveFromWishlist", "ShoppingCart")',
+                        data: JSON.stringify({ id: productId, __RequestVerificationToken: token }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            if (response.success) {
+                                $('#wishlist-item-' + productId).fadeOut(300, function () { $(this).remove(); });
+                                $('#WishlistCount').text(response.wishlistCount);
+                                if (response.wishlistCount == 0) {
+                                    $('#wishlist-table').hide();
+                                    $('#empty-wishlist').fadeIn(300);
+                                }
+                                Swal.fire('Thành công!', 'Đã xóa sản phẩm khỏi danh sách yêu thích!', 'success');
+                            } else {
+                                Swal.fire('Lỗi!', response.message, 'error');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            Swal.fire('Lỗi!', 'Có lỗi xảy ra khi xóa sản phẩm: ' + xhr.responseText, 'error');
+                        },
+                        complete: function () {
+                            $('.remove-wishlist-item').prop('disabled', false).removeClass('loading');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Add to cart from wishlist
+        $(document).on('click', '.add-to-cart-from-wishlist', function (e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
+            var quantity = parseInt($('#quantity-' + productId).val()) || 1;
+            var model = {
+                Id: productId,
+                Quantity: quantity
+            };
+
+            $(this).prop('disabled', true).addClass('loading');
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "ShoppingCart")',
+                data: JSON.stringify(model),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    $('#CartCount').text(response.count);
+                    Swal.fire('Thành công!', 'Thêm vào giỏ hàng thành công!', 'success');
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire('Lỗi!', 'Đã xảy ra lỗi khi thêm vào giỏ hàng: ' + xhr.responseText, 'error');
+                },
+                complete: function () {
+                    $('.add-to-cart-from-wishlist').prop('disabled', false).removeClass('loading');
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Breadcrumb -->
+<div class="container" style="margin-top: 100px;">
+    <nav class="breadcrumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg" aria-label="breadcrumb">
+        <a href="@Url.Action("Index", "Home")" class="stext-109 cl8 hov-cl1 trans-04">
+            Trang chủ
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">Danh sách yêu thích</span>
+    </nav>
+</div>
+
+<!-- Wishlist Section -->
+<section class="section-wishlist p-t-50 p-b-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="stext-102 cl3 p-b-30">Danh sách yêu thích của bạn</h3>
+                @if (Model == null || Model.Count == 0)
+                {
+                    <div id="empty-wishlist" class="empty-wishlist text-center">
+                        <i class="zmdi zmdi-favorite-outline" style="font-size: 60px; color: var(--primary-color);"></i>
+                        <p class="stext-107 cl6 m-t-20">Danh sách yêu thích của bạn đang trống!</p>
+                        <a href="@Url.Action("AllListingGrid", "ListingGrid")" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                            Mua sắm ngay
+                        </a>
+                    </div>
+                    <table id="wishlist-table" class="table-wishlist table table-bordered" style="display: none;"></table>
+                }
+                else
+                {
+                    <table id="wishlist-table" class="table-wishlist table table-bordered">
+                        <thead>
+                            <tr class="table_head">
+                                <th class="column-1">Hình ảnh</th>
+                                <th class="column-2">Tên sản phẩm</th>
+                                <th class="column-3">Giá</th>
+                                <th class="column-4">Số lượng</th>
+                                <th class="column-5">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                if (item.Product != null)
+                                {
+                                    var isDiscounted = discountedProductIds.Contains(item.Product.Id);
+                                    var discountPercentage = isDiscounted && item.Product.PriceDiscount.HasValue && item.Product.Price.HasValue
+                                        ? Math.Round(((item.Product.Price.Value - item.Product.PriceDiscount.Value) / item.Product.Price.Value * 100), 0)
+                                        : 0;
+
+                                    <tr id="wishlist-item-@item.Product.Id" class="table_row">
+                                        <td class="column-1">
+                                            <img src="~/Content/images1/@item.Product.Avatar" alt="@item.Product.Name" class="product-img" />
+                                        </td>
+                                        <td class="column-2">
+                                            <a href="@Url.Action("ProductDetail", "Product", new { id = item.Product.Id })" class="product-name">@item.Product.Name</a>
+                                        </td>
+                                        <td class="column-3">
+                                            @if (isDiscounted)
+                                            {
+                                                <span style="text-decoration: line-through; color: #999; margin-right: 5px;">
+                                                    @string.Format("{0:N0}", item.Product.Price),000 VNĐ
+                                                </span>
+                                                <span style="color: #e74c3c;">
+                                                    @string.Format("{0:N0}", item.Product.PriceDiscount),000 VNĐ
+                                                </span>
+                                                <span style="color: #e74c3c; font-size: 0.9rem; margin-left: 5px;">
+                                                    (-@discountPercentage%)
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    @string.Format("{0:N0}", item.Product.Price),000 VNĐ
+                                                </span>
+                                            }
+                                        </td>
+                                        <td class="column-4">
+                                            <input type="number" id="quantity-@item.Product.Id" class="form-control quantity-input" value="@item.Quantity" min="1" aria-label="Số lượng sản phẩm" />
+                                        </td>
+                                        @using (Html.BeginForm())
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <td class="column-5">
+                                                <button class="add-to-cart-from-wishlist btn btn-primary m-r-10" data-id="@item.Product.Id" aria-label="Thêm vào giỏ hàng">
+                                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                                </button>
+                                                <button class="remove-wishlist-item btn btn-danger" data-id="@item.Product.Id" aria-label="Xóa khỏi danh sách yêu thích">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </button>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <div id="empty-wishlist" class="empty-wishlist text-center" style="display: none;">
+                        <i class="zmdi zmdi-favorite-outline" style="font-size: 60px; color: var(--primary-color);"></i>
+                        <p class="stext-107 cl6 m-t-20">Danh sách yêu thích của bạn đang trống!</p>
+                        <a href="@Url.Action("AllListingGrid", "ListingGrid")" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                            Mua sắm ngay
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CSS -->
+<style>
+    :root {
+        --primary-color: #1e88e5;
+        --secondary-color: #ff6b6b;
+        --text-color: #333;
+        --bg-color: #f8f9fa;
+        --white: #ffffff;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #fff;
+    }
+
+    .section-wishlist {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 40px 0;
+        box-shadow: var(--shadow);
+    }
+
+    .breadcrumb {
+        background: transparent;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+        .breadcrumb a, .breadcrumb span {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+            .breadcrumb a:hover {
+                color: var(--primary-color);
+            }
+
+    .table-wishlist {
+        width: 100%;
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+        .table-wishlist th {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .table-wishlist td {
+            padding: 15px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        .table-wishlist .column-1 {
+            width: 15%;
+        }
+
+        .table-wishlist .column-2 {
+            width: 30%;
+        }
+
+        .table-wishlist .column-3 {
+            width: 20%;
+        }
+
+        .table-wishlist .column-4 {
+            width: 15%;
+        }
+
+        .table-wishlist .column-5 {
+            width: 20%;
+        }
+
+    .product-img {
+        width: 80px;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+        .product-img:hover {
+            transform: scale(1.05);
+        }
+
+    .product-name {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .product-name:hover {
+            text-decoration: underline;
+        }
+
+    .quantity-input {
+        width: 70px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, var(--primary-color), #42a5f5);
+        color: var(--white);
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #42a5f5, var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .btn-danger {
+        background: linear-gradient(90deg, var(--secondary-color), #ff8e8e);
+        color: var(--white);
+    }
+
+        .btn-danger:hover {
+            background: linear-gradient(90deg, #ff8e8e, var(--secondary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .btn.loading::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid var(--white);
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+    }
+
+    .empty-wishlist {
+        padding: 40px;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin-top: 20px;
+    }
+
+        .empty-wishlist p {
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .empty-wishlist a {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+            .empty-wishlist a:hover {
+                background: #42a5f5;
+                transform: translateY(-2px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+</style>

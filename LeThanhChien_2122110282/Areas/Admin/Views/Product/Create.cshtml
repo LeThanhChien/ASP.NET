@@ -5,6 +5,53 @@
 }
 
 <h2 style="text-align:center">Thêm mới</h2>
+<style>
+    body {
+        background-color: #f4f5f7;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        border: none;
+        font-size: 18px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        color: #fff;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            transform: scale(1.05);
+        }
+</style>
+
 
 @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

@@ -14,11 +14,12 @@ namespace LeThanhChien_2122110282.Context
     
     public partial class Order
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> ProductId { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<int> Status { get; set; }
         public System.DateTime CreatedOnUtc { get; set; }
+        public int Id { get; set; }
+        public string PaymentMethod { get; set; }
     }
 }

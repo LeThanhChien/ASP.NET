@@ -17,11 +17,13 @@ namespace LeThanhChien_2122110282.Areas.Admin.Controllers
         {
             int productcount = objCSDLASPEntities2.Products.Count();
             int memberCount = objCSDLASPEntities2.Users.Count();
+            int orderCount = objCSDLASPEntities2.Orders.Count();
 
             var HomeModel = new HomeModel
             {
                 ProductCount = productcount,  
-                MemberCount = memberCount 
+                MemberCount = memberCount,
+                OrderCount = orderCount
             }; 
             return View(HomeModel);
         }

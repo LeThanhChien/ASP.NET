@@ -1,166 +1,230 @@
 ﻿@model IEnumerable<LeThanhChien_2122110282.Models.CartModel>
 @{
-    ViewBag.Title = "AllShoppingCart";
+    ViewBag.Title = "Giỏ Hàng";
+    decimal subtotal = 0;
+    if (Model != null)
+    {
+        subtotal = Model.Sum(item => (decimal)item.Price * item.Quantity);
+    }
+    decimal total = subtotal;
+
+    // Get the discounted product IDs from ViewBag
+    var discountedProductIds = ViewBag.DiscountedProductIds as List<int> ?? new List<int>();
 }
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
     $(function () {
-        $("#removecart").click(function () {
-            var model = {};
-            //lấy id sản phẩm
-            model.Id = $("#productid").val();
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("Remove", "ShoppingCart")',
-                data:  JSON.stringify(model) ,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    $('#CartCount').text(@Session["count"] - 1);
-                    $("#product-" + model.Id).remove();
-                },
-                error: function () {
-                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+        // Pass discountedProductIds to JavaScript
+        const discountedProductIds = @Html.Raw(Json.Encode(discountedProductIds));
+
+        // Remove item from cart
+        $(".removecart").click(function () {
+            var productId = $(this).data("productid");
+            var model = { Id: productId };
+
+            Swal.fire({
+                title: 'Xác nhận',
+                text: 'Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).prop('disabled', true).addClass('loading');
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Remove", "ShoppingCart")',
+                        data: JSON.stringify(model),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            // Remove the product row
+                            $("#product-" + productId).remove();
+
+                            // Update cart count
+                            var currentCount = parseInt($('#CartCount').text()) || 0;
+                            $('#CartCount').text(currentCount - 1);
+
+                            // Update subtotal and total
+                            var subtotal = parseFloat(response.subtotal) || 0;
+                            $("#subtotal").text(subtotal.toLocaleString('vi-VN') + ' đ');
+                            $("#total").text(subtotal.toLocaleString('vi-VN') + ' đ');
+
+                            // Show success message
+                            Swal.fire('Thành công!', 'Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
+
+                            // Hide checkout button if cart is empty
+                            if ($(".table_row").length === 0) {
+                                $("#cart-table").html('<tr><td colspan="6" class="text-center">Không có sản phẩm nào trong giỏ hàng.</td></tr>');
+                                $("#checkout-button").hide();
+                            }
+                        },
+                        error: function () {
+                            Swal.fire('Lỗi!', 'Đã xảy ra lỗi khi xóa sản phẩm khỏi giỏ hàng!', 'error');
+                            $(this).prop('disabled', false).removeClass('loading');
+                        }
+                    });
                 }
             });
             return false;
         });
     });
 </script>
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
+
+<!-- Shopping Cart -->
+<div class="container" style="margin-top:100px">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="@Url.Action("Index","Home")" class="stext-109 cl8 hov-cl1 trans-04">
+            Trang Chủ
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">
+            Giỏ Hàng
+        </span>
+    </div>
+</div>
+
+<form class="bg0 p-t-50 p-b-150">
     <div class="container">
-
         <div class="row">
-            <main class="col-md-9">
-                <div class="card">
-
-                    <table class="table table-borderless table-shopping-cart">
-                        <thead class="text-muted">
-                            <tr class="small text-uppercase">
-                                <th scope="col">Product</th>
-                                <th scope="col" width="200">Quantity</th>
-                                <th scope="col" width="120">Price</th>
-                                <th scope="col" class="text-right" width="200"> </th>
+            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--70 m-lr-0-xl">
+                    <div class="wrap-table-shopping-cart">
+                        <table class="table-shopping-cart" id="cart-table">
+                            <tr class="table_head">
+                                <th class="column-1">Sản Phẩm</th>
+                                <th class="column-2">Tên</th>
+                                <th class="column-3">Giá</th>
+                                <th class="column-4">Số Lượng</th>
+                                <th class="column-5">Tổng</th>
+                                <th class="column-6"></th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model != null)
+                            @if (Model != null && Model.Any())
                             {
                                 foreach (var item in Model)
                                 {
-                                    <tr id="product-@item.Product.Id">
-                                        <td>
-                                            <figure class="itemside">
-                                                <div class="aside"><img src="~/Content/images/items/@item.Product.Avatar" class="img-sm"></div>
-                                                <figcaption class="info">
-                                                    <a href="#" class="title text-dark">@item.Product.Name</a>
-                                                </figcaption>
-                                            </figure>
-                                        </td>
-                                        <td>
-                                             <input type="text" id="ipQuantity-@item.Product.Id" class="form-control" value="@item.Quantity"> 
-                                            
-                                        </td>
-                                        <td>
-                                            <div class="price-wrap">
-                                                <var class="price" data-price="@item.Product.Price">@((decimal)item.Product.Price * item.Quantity)</var>
+                                    // Use the Price property from CartModel
+                                    var priceToUse = item.Price;
+
+                                    // Determine if the product is in the discounted list for styling purposes
+                                    var isDiscounted = discountedProductIds.Contains(item.Product.Id);
+                                    // Calculate discount percentage only for styling, if discounted
+                                    var discountPercentage = isDiscounted && item.Product.PriceDiscount.HasValue && item.Product.PriceDiscount.Value < (item.Product.Price ?? 0)
+                                        ? Math.Round((((item.Product.Price ?? 0) - item.Product.PriceDiscount.Value) / (item.Product.Price ?? 1)) * 100)
+                                        : 0.0;
+
+                                    <tr class="table_row" id="product-@item.Product.Id">
+                                        <td class="column-1">
+                                            <div class="how-itemcart1">
+                                                <img src="~/Content/images1/@item.Product.Avatar" alt="IMG">
                                             </div>
-
                                         </td>
+                                        <td class="column-2">@item.Product.Name</td>
+                                        <td class="column-3">
+                                            @if (isDiscounted && item.Product.PriceDiscount.HasValue && item.Product.PriceDiscount.Value < (item.Product.Price ?? 0))
+                                            {
+                                                <span style="text-decoration: line-through; color: #999;">
+                                                    @(string.Format("{0:N0}", (item.Product.Price ?? 0) * 1000)) đ
+                                                </span>
+                                                <span style="color: #e74c3c;">
+                                                    @(string.Format("{0:N0}", priceToUse * 1000)) đ
+                                                </span>
+                                                <span style="color: #e74c3c; font-size: 0.9rem;">(-@discountPercentage%)</span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    @(string.Format("{0:N0}", priceToUse * 1000)) đ
+                                                </span>
+                                            }
+                                        </td>
+                                        <td class="column-4">
+                                            <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                                <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                    <i class="fs-16 zmdi zmdi-minus"></i>
+                                                </div>
+                                                <input id="ipQuantity-@item.Product.Id" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="@item.Quantity">
+                                                <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                    <i class="fs-16 zmdi zmdi-plus"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="column-5">@(string.Format("{0:N0}", priceToUse * item.Quantity * 1000)) đ</td>
                                         <td class="text-right">
-                                            <input type="hidden" value="@item.Product.Id" id="productid" />
-                                            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-
-                                            <a href="" class="btn btn-light" id="removecart"> Remove</a>
+                                            <a href="javascript:void(0)" class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5 removecart" data-productid="@item.Product.Id">
+                                                <i class="zmdi zmdi-delete"></i> Xóa
+                                            </a>
                                         </td>
                                     </tr>
                                 }
                             }
                             else
                             {
-                                <p>Không có sản phẩm trong giỏ hàng</p>
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        <p>Không có sản phẩm nào trong giỏ hàng.</p>
+                                    </td>
+                                </tr>
                             }
-
-                        </tbody>
-                    </table>
-
-                    <div class="card-body border-top">
-                        <a href="#" class="btn btn-primary float-md-right"> Thanh toán <i class="fa fa-chevron-right"></i> </a>
-                        <a href="@Url.Action("AllListingGrid","ListingGrid")" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Tiếp tục mua hàng </a>
+                        </table>
                     </div>
-                </div> <!-- card.// -->
-
-                <div class="alert alert-success mt-3">
-                    <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
-                </div>
-
-            </main> <!-- col.// -->
-            <aside class="col-md-3">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label>Have coupon?</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="" placeholder="Coupon code">
-                                    <span class="input-group-append">
-                                        <button class="btn btn-primary">Apply</button>
-                                    </span>
+                    <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+                        <div class="flex-w flex-m m-r-20 m-tb-5">
+                            <a href="@Url.Action("AllListingGrid","ListingGrid")">
+                                <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+                                    Tiếp Tục Mua Sắm
                                 </div>
+                            </a>
+                        </div>
+                        <a href="@Url.Action("Checkout", "Home")" id="checkout-button">
+                            <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+                                Thanh Toán
                             </div>
-                        </form>
-                    </div> <!-- card-body.// -->
-                </div>  <!-- card .// -->
-                <div class="card">
-                    <div class="card-body">
-                        <dl class="dlist-align">
-                            <dt>Total price:</dt>
-                            <dd class="text-right">USD 568</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                            <dt>Discount:</dt>
-                            <dd class="text-right">USD 658</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                            <dt>Total:</dt>
-                            <dd class="text-right h5"><strong id="cart-total">$0.00</strong></dd>
-                        </dl>
-                        <hr>
-                        <p class="text-center mb-3">
-                            <img src="~/Content/images/misc/payments.png" height="26">
-                        </p>
-                    </div> <!-- card-body.// -->
-                </div> <!-- card .// -->
-            </aside> <!-- col.// -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+                <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+                    <h4 class="mtext-109 cl2 p-b-30">
+                        Tổng Giỏ Hàng
+                    </h4>
+                    <div class="flex-w flex-t bor12 p-b-13">
+                        <div class="size-208">
+                            <span class="stext-110 cl2">
+                                Tạm Tính:
+                            </span>
+                        </div>
+                        <div class="size-209">
+                            <span class="mtext-110 cl2" id="subtotal">
+                                @(string.Format("{0:N0}", subtotal * 1000)) đ
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex-w flex-t p-t-27 p-b-33">
+                        <div class="size-208">
+                            <span class="mtext-101 cl2">
+                                Tổng Cộng:
+                            </span>
+                        </div>
+                        <div class="size-209 p-t-1">
+                            <span class="mtext-110 cl2" id="total">
+                                @(string.Format("{0:N0}", total * 1000)) đ
+                            </span>
+                        </div>
+                    </div>
+                    <a href="@Url.Action("Checkout", "Home")">
+                        <div class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                            Tiến Hành Thanh Toán
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-
-    </div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name border-top padding-y">
-    <div class="container">
-        <h6>Payment and refund policy</h6>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-
-    </div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
+    </div>
+</form>

@@ -1,0 +1,219 @@
+﻿@model LeThanhChien_2122110282.Context.User
+
+@{
+    ViewBag.Title = "Hồ Sơ";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Explicitly set the layout
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div style="padding-top:50px">
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="avatar-wrapper">
+                <img src="@Url.Content("~/Content/images1/default-avatar.png")" alt="Ảnh Đại Diện" class="profile-avatar" id="profileAvatar" />
+                <label for="avatarInput" class="avatar-upload-label">
+                    <i class="fas fa-camera"></i> Chỉnh Sửa Ảnh
+                </label>
+                <input type="file" id="avatarInput" accept="image/*" style="display: none;" />
+            </div>
+            <h1 class="profile-name">@Model.LastName @Model.FirstName</h1>
+            <p class="profile-username">@Model.Email</p>
+        </div>
+
+        <!-- Profile Information -->
+        <div class="profile-info">
+            <div class="info-card">
+                <h4><i class="fas fa-envelope"></i> Email</h4>
+                <p>@Model.Email</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-calendar-alt"></i> Thành Viên Từ</h4>
+                <p>@DateTime.Now.ToString("MMMM yyyy")</p> <!-- Replace with actual data -->
+            </div>
+            <div class="info-card" id="OrderCount">
+                <a href="@Url.Action("OrderTracking","ShoppingCart")">
+                    <h4><i class="fas fa-shopping-cart"></i> Đơn Hàng</h4>
+                </a>
+                <p>@(Session["orderCount"] ?? "0")</p> <!-- Replace with actual data -->
+            </div>
+        </div>
+
+        @if (Session["idUser"] != null)
+        {
+            <div class="text-center mt-4">
+                <a href="~/Home/Logout" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Styling -->
+<style>
+    .profile-container {
+        max-width: 700px;
+        margin: 50px auto;
+        background: linear-gradient(135deg, #f4f5f7, #e9eef3);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        padding: 30px;
+        padding-top: 80px;
+        position: relative;
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .avatar-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #0d6efd;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .avatar-upload-label {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #0d6efd;
+        color: #fff;
+        padding: 0px 17px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background 0.3s ease;
+    }
+
+        .avatar-upload-label:hover {
+            background: #0056b3;
+        }
+
+    .profile-name {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #333;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    .profile-username {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .profile-info {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    .info-card {
+        flex: 1;
+        min-width: 200px;
+        background: #ffffff;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-card h4 {
+            font-size: 1.1rem;
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+    .btn-edit, .btn-logout {
+        display: inline-block;
+        background: #0d6efd;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .btn-edit:hover, .btn-logout:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+    .btn-logout {
+        margin-top: 10px;
+        background: #dc3545;
+    }
+
+        .btn-logout:hover {
+            background: #a71d2a;
+        }
+
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        background: #f4f7fa;
+        color: #333;
+    }
+</style>
+
+<!-- JavaScript để xử lý tải và hiển thị ảnh -->
+<script>
+    // Lấy phần tử input file và hình ảnh avatar
+    const avatarInput = document.getElementById('avatarInput');
+    const profileAvatar = document.getElementById('profileAvatar');
+
+    // Kiểm tra nếu có ảnh trong localStorage thì hiển thị
+    const savedAvatar = localStorage.getItem('userAvatar');
+    if (savedAvatar) {
+        profileAvatar.src = savedAvatar;
+    }
+
+    // Xử lý khi người dùng chọn ảnh
+    avatarInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imageData = e.target.result;
+                profileAvatar.src = imageData; // Hiển thị ảnh
+                localStorage.setItem('userAvatar', imageData); // Lưu ảnh vào localStorage
+            };
+            reader.readAsDataURL(file); // Chuyển file thành Data URL
+        }
+    });
+
+    // Reset về ảnh mặc định nếu cần
+    function resetAvatar() {
+        profileAvatar.src = '@Url.Content("~/Content/images1/default-avatar.png")';
+        localStorage.removeItem('userAvatar');
+    }
+</script>

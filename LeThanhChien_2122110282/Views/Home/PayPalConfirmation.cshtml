@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "PayPal Confirmation";
+}
+
+<div class="container" style="margin-top:100px">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="@Url.Action("Index","Home")" class="stext-109 cl8 hov-cl1 trans-04">
+            Trang Chủ
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">
+            Xác Nhận Thanh Toán
+        </span>
+    </div>
+</div>
+
+<div class="container p-t-50 p-b-150">
+    <div class="bor10 p-lr-40 p-t-30 p-b-40 m-lr-auto">
+        <h4 class="mtext-109 cl2 p-b-30">Thanh Toán Thành Công</h4>
+        <p class="stext-110 cl2">@TempData["SuccessMessage"]</p>
+        <p class="stext-110 cl2">Cảm ơn bạn đã mua sắm với chúng tôi! Đơn hàng của bạn đã được xử lý thành công qua PayPal.</p>
+        <div class="flex-w flex-m p-t-20">
+            <a href="@Url.Action("Index", "Home")" class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
+                Tiếp Tục Mua Sắm
+            </a>
+        </div>
+    </div>
+</div>

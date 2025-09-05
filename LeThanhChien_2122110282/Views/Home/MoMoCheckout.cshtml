@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "MoMoCheckout";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Disable "Order confirmation" button initially
+        $('#ccheckoutButton').prop('disabled', true);
+
+        // Handle "Show QR Code" button click
+        $('#momoCheckoutButton').click(function () {
+            $(this).prop('disabled', true).text("Generating QR Code...");
+            $('#loadingSpinner').show(); // Thay fadeIn thành show
+
+            // Simulate QR code loading
+            setTimeout(function () {
+                $('#loadingSpinner').hide(); // Thay fadeOut thành hide
+                $('#qrCodeImage').show(); // Thay fadeIn thành show
+                $('#momoCheckoutButton').text("QR Code Ready").prop('disabled', false);
+                $('#ccheckoutButton').prop('disabled', false);
+            }, 2000);
+        });
+
+        $('#ccheckoutButton').click(function (e) {
+            e.preventDefault();
+
+            const fullName = '@ViewBag.FullName'.trim();
+            const address = '@ViewBag.Address'.trim();
+            const email = '@ViewBag.Email'.trim();
+            const paymentMethod = 'MoMo';
+            const token = $('input[name="__RequestVerificationToken"]').val();
+
+            // Validate required fields
+            if (!fullName || !address || !email) {
+                alert("Missing required information. Please fill in all fields.");
+                return;
+            }
+
+            // Send AJAX request to backend
+            $.ajax({
+                type: "POST",
+                url: "/Home/MoMoCheckout",
+                data: {
+                    __RequestVerificationToken: token,
+                    FullName: fullName, // Match the model property name
+                    Address: address,
+                    Email: email,
+                    PaymentMethod: paymentMethod
+                },
+                success: function () {
+                    Swal.fire('Thành công!', 'Thanh toán thành công!', 'success');
+                    window.location.href = "/Home/MoMoConfirmation";
+                },
+                error: function (error) {
+                    console.error("Lỗi xảy ra:", error);
+                    alert("Đã xảy ra lỗi khi xử lý thanh toán.");
+                }
+            });
+        });
+    });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    button:disabled {
+        background-color: #bdc3c7;
+        color: #ecf0f1;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        color: #2c3e50;
+        margin: 0;
+        padding: 0;
+    }
+
+    .momo-container {
+        max-width: 600px;
+        margin: 50px auto;
+        text-align: center;
+        background: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 40px;
+    }
+
+        .momo-container h2 {
+            color: #3498db;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+    .details {
+        text-align: left;
+        font-size: 16px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #cce6ff;
+    }
+
+        .details p {
+            margin: 10px 0;
+            line-height: 1.8;
+            color: #34495e;
+        }
+
+    .btn-primary {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+        }
+
+    .spinner {
+        display: none;
+        margin: 20px auto;
+        border: 6px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 6px solid #3498db;
+        width: 50px;
+        height: 50px;
+    }
+
+    #qrCodeImage {
+        display: none;
+        margin-top: 30px;
+    }
+</style>
+
+<section class="momo-container">
+    <h2>MoMo Payment</h2>
+
+    <!-- Add a form to hold the anti-forgery token -->
+    <form id="momoCheckoutForm">
+        @Html.AntiForgeryToken() <!-- Generate the __RequestVerificationToken -->
+        <!-- Display user details -->
+        <div class="details">
+            <p><strong>Name:</strong> @ViewBag.FullName</p>
+            <p><strong>Address:</strong> @ViewBag.Address</p>
+            <p><strong>Email:</strong> @ViewBag.Email</p>
+            <p><strong>Total Amount:</strong> @ViewBag.TotalAmount.ToString("F2"),000 đ</p>
+        </div>
+    </form>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+
+    <!-- QR Code -->
+    <img id="qrCodeImage" src="~/Content/images1/qr.jpg" alt="MoMo QR Code" style="width: 300px; height: 300px; display: none;">
+
+    <!-- Buttons -->
+    <button id="momoCheckoutButton" class="btn-primary">Show QR Code</button>
+    <button id="ccheckoutButton" class="btn-primary" disabled>Order confirmation</button>
+</section>

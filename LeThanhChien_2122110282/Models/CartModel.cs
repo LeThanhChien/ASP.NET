@@ -11,6 +11,12 @@ namespace LeThanhChien_2122110282.Models
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }
-       
+        public double Price { get; set; }
+
+    }
+    public class WishlistItem
+    {
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
     }
 }

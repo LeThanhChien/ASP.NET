@@ -1,55 +1,446 @@
 ﻿@model LeThanhChien_2122110282.Context.User
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y" style="min-height:84vh">
-    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-        <div class="card-body">
-            @if (TempData["SuccessMessage"] != null)
-            {<div class="alert alert-success">
-                    @TempData["SuccessMessage"]
-                </div>}
-                <h4 class="card-title mb-4">Đăng nhập</h4>
-                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
-                {
+<!-- Add Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Google Fonts for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Identity Services Library -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Email)
-                        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+<!-- Improved Login Section -->
+<section class="login-section" style="margin-top:70px">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="login-card">
+                    <div class="login-header text-center mb-5">
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+                        <h2 class="fw-bold text-primary mb-3">Chào Mừng Bạn Trở Lại</h2>
+                        <p class="text-muted">Vui lòng đăng nhập để tiếp tục</p>
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Password)
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "password", @placeholder = "Mật khẩu" })
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary btn-block" value="Đăng nhập" />
-                    </div>
-                    <div class="form-group">
-                        <label class="float-left custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="showPassword">
-                            <div class="custom-control-label"> Xem mật khẩu </div>
-                        </label>
-                    </div> <!-- form-group form-check .// -->
-                }
-            </div> <!-- card-body.// -->
-    </div> <!-- card .// -->
 
-    <p class="text-center mt-4">Bạn chưa có tài khoản? @Html.ActionLink("Đăng ký", "Register", "UserRegister")</p>
-    <br><br>
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "needs-validation login-form", novalidate = "novalidate" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-4 form-group">
+                            <label for="Email" class="form-label fw-bold">Địa Chỉ Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                @Html.TextBoxFor(m => m.Email, new
+                                {
+                                    @class = "form-control py-3",
+                                    @placeholder = "Nhập email của bạn",
+                                    type = "email",
+                                    required = "required"
+                                })
+                            </div>
+                            <div class="invalid-feedback">Vui lòng nhập email hợp lệ.</div>
+                        </div>
+
+                        <div class="mb-4 form-group">
+                            <label for="Password" class="form-label fw-bold">Mật Khẩu</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                @Html.PasswordFor(m => m.Password, new
+                                {
+                                    @class = "form-control py-3 password-input",
+                                    @id = "password",
+                                    @placeholder = "Nhập mật khẩu của bạn",
+                                    required = "required"
+                                })
+                                <button type="button" class="btn toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
+                        </div>
+
+                        <div class="d-flex justify-content-end align-items-center mb-4">
+                            <a href="@Url.Action("ForgotPassword", "Home")" class="text-decoration-none text-primary hover-underline">Quên mật khẩu?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-3 login-btn">
+                            <span class="btn-text"><i class="fas fa-sign-in-alt me-2"></i> ĐĂNG NHẬP</span>
+                            <span class="btn-loading d-none"><i class="fas fa-spinner fa-spin me-2"></i> Đang xử lý...</span>
+                        </button>
+                    }
+
+                    <div class="divider text-center my-4">
+                        <span class="divider-text">Hoặc tiếp tục với</span>
+                    </div>
+
+                    <div class="mb-4 text-center">
+                        <div class="g-signin-btn-wrapper">
+                            <div id="google-signin-btn"></div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-muted">
+                            Chưa có tài khoản?
+                            <a href="@Url.Action("Register", "UserRegister")" class="text-primary fw-bold text-decoration-none hover-underline">Tạo tài khoản</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- JavaScript to toggle password visibility -->
+
 <script>
-    document.getElementById('showPassword').addEventListener('change', function () {
-        var passwordField = document.getElementById('password');
-        if (this.checked) {
-            passwordField.type = 'text';
-        } else {
-            passwordField.type = 'password';
+    // Replace 'YOUR_CLIENT_ID' with your actual Google Client ID
+    const CLIENT_ID = '349750380721-4qf5ct1htvegvrc8bonmfrhc49pqc06b.apps.googleusercontent.com';
+
+    // Initialize Google Sign-In
+    document.addEventListener('DOMContentLoaded', function () {
+        // Password toggle
+        const toggleButton = document.querySelector('.toggle-password');
+        const passwordField = document.getElementById('password');
+
+        if (toggleButton && passwordField) {
+            toggleButton.addEventListener('click', function () {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
         }
+
+        // Form validation
+        const form = document.querySelector('.needs-validation');
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                // Show loading animation on submit
+                const loginBtn = form.querySelector('.login-btn');
+                const btnText = loginBtn.querySelector('.btn-text');
+                const btnLoading = loginBtn.querySelector('.btn-loading');
+                loginBtn.disabled = true;
+                btnText.classList.add('d-none');
+                btnLoading.classList.remove('d-none');
+            }
+            form.classList.add('was-validated');
+        }, false);
+
+        // Google Sign-In initialization
+        window.handleCredentialResponse = function (response) {
+            // Decode the ID token (JWT)
+            const userData = parseJwt(response.credential);
+
+            // Prepare user data to send to server
+            const user = {
+                id: userData.sub,
+                name: userData.name,
+                email: userData.email,
+                imageUrl: userData.picture
+            };
+
+            // Send user data to your server
+            fetch('/Home/GoogleLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest' // For CSRF protection
+                },
+                body: JSON.stringify(user)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = data.redirectUrl; // Redirect to homepage or dashboard
+                    } else {
+                        alert('Đăng nhập thất bại: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending data to server:', error);
+                    alert('Có lỗi xảy ra khi đăng nhập bằng Google.');
+                });
+        };
+
+        // Initialize Google Sign-In button
+        google.accounts.id.initialize({
+            client_id: CLIENT_ID,
+            callback: handleCredentialResponse
+        });
+
+        // Render the Google Sign-In button
+        const signInButton = document.getElementById('google-signin-btn');
+        google.accounts.id.renderButton(signInButton, {
+            type: 'standard',
+            theme: 'filled_blue',
+            size: 'large',
+            text: 'signin_with',
+            shape: 'pill',
+            width: '300'
+        });
     });
+
+    // Function to decode JWT token
+    function parseJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    }
 </script>
+
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(#ffffff);
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 40px 0;
+        background: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png') repeat;
+        background-attachment: fixed;
+    }
+
+    /* Login Card */
+    .login-card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        transform: translateY(0);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+    .login-header h2 {
+        font-size: 28px;
+        color: #1a3c7a;
+        letter-spacing: 0.5px;
+    }
+
+    .login-header p {
+        font-size: 16px;
+        color: #6c757d;
+    }
+
+    /* Alerts */
+    .alert-success {
+        background-color: #e6f4ea;
+        color: #2e7d32;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    /* Form Styling */
+    .form-group {
+        position: relative;
+    }
+
+    .form-label {
+        font-size: 14px;
+        color: #343a40;
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+    }
+
+    .input-group {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .input-group-text {
+        background: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-right: none;
+        border-radius: 8px 0 0 8px;
+        color: #6c757d;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 0 8px 8px 0;
+        padding: 12px 15px;
+        font-size: 14px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #1a3c7a;
+            box-shadow: 0 0 0 3px rgba(26, 60, 122, 0.1);
+            outline: none;
+        }
+
+        .form-control:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: #dc3545;
+        }
+
+    .invalid-feedback {
+        display: none;
+        font-size: 12px;
+        color: #dc3545;
+        margin-top: 5px;
+    }
+
+    .was-validated .form-control:invalid,
+    .form-control:invalid:not(:focus):not(:placeholder-shown) ~ .invalid-feedback {
+        display: block;
+    }
+
+    /* Password Toggle */
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        padding: 0 10px;
+        z-index: 10;
+        cursor: pointer;
+    }
+
+        .toggle-password i {
+            font-size: 16px;
+            color: #6c757d;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover i {
+            color: #1a3c7a;
+        }
+
+    .password-input {
+        padding-right: 50px !important;
+    }
+
+    /* Buttons */
+    .login-btn {
+        background: linear-gradient(135deg, #1a3c7a, #2e5cb8);
+        border: none;
+        font-size: 16px;
+        color: #ffffff;
+        letter-spacing: 1px;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #2e5cb8, #1a3c7a);
+            transform: translateY(-2px);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+    /* Custom Google Sign-In Button Styling */
+    .g-signin-btn-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #google-signin-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+        #google-signin-btn > div {
+            border-radius: 50px !important;
+            background: #ffffff !important;
+            border: 2px solid #4285f4 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            padding: 12px 20px !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        }
+
+            #google-signin-btn > div:hover {
+                background: #4285f4 !important;
+                color: #ffffff !important;
+                transform: translateY(-2px) !important;
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+            }
+
+            #google-signin-btn > div > div {
+                margin-right: 10px !important;
+            }
+
+    /* Divider */
+    .divider {
+        position: relative;
+        text-align: center;
+    }
+
+    .divider-text {
+        font-size: 14px;
+        color: #6c757d;
+        background: #ffffff;
+        padding: 0 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #dee2e6;
+        z-index: 0;
+    }
+
+    /* Links */
+    .hover-underline {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #1a3c7a;
+            transition: width 0.3s ease;
+        }
+
+        .hover-underline:hover {
+            color: #1a3c7a;
+        }
+
+            .hover-underline:hover::after {
+                width: 100%;
+            }
+</style>

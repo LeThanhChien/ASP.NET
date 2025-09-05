@@ -4,39 +4,60 @@
     ViewBag.Title = "Search Results";
 }
 
-@if (Model.Any())
-{
-    <div class="row">
-        @foreach (var item in Model)
+<div class="container" style="margin-top:100px">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="@Url.Action("Index","Home")" class="stext-109 cl8 hov-cl1 trans-04">
+            Trang chủ
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">
+            Kết quả tìm kiếm
+        </span>
+    </div>
+</div>
+<div class="bg0 m-t-23 p-b-140">
+    <div class="container">
+        @if (Model.Any())
         {
-            <div class="col-md-3">
-                <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                        <span class="badge badge-danger"> NEW </span>
-                        <a href="@Url.Action("Detail", "Product", new { Id = item.Id }, null)">
-                            <img src="~/Content/images/items/@item.Avatar">
-                        </a>
-                    </div> <!-- img-wrap.// -->
-                    <figcaption class="info-wrap">
-                        @Html.ActionLink(item.Name, "Detail", "Product", new { Id = item.Id }, null)
-                        <div class="price-wrap">
-                            <span class="price">@item.Price</span>
-                        </div> <!-- price-wrap.// -->
+            <div class="row isotope-grid">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                        <!-- Block2 -->
+                        <div class="block2">
+                            <div class="block2-pic hov-img0">
+                                <!-- Đảm bảo đường dẫn đến hình ảnh -->
+                                <img src="~/Content/images1/@item.Avatar" alt="@item.Name" onerror="this.src='/Content/images1/default-image.jpg'">
 
-
-                        <p class="text-muted ">@item.FullDescription</p>
-
-                        <hr />
-
-                        <a href="@Url.Action("Detail", "Product", new { Id = item.Id }, null)" class="btn btn-primary">Xem chi tiết</a>
-
-                    </figcaption>
-                </figure>
-            </div> <!-- col.// -->
+                                <button data-id="@item.Id" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quick-view-btn">
+                                    Xem nhanh
+                                </button>
+                            </div>
+                            <div class="block2-txt flex-w flex-t p-t-14">
+                                <div class="block2-txt-child1 flex-col-l">
+                                    <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        @item.Name
+                                    </a>
+                                    <span class="stext-105 cl3">
+                                        @item.Price
+                                    </span>
+                                    @item.ShortDes
+                                </div>
+                                <div class="block2-txt-child2 flex-r p-t-3">
+                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                        <img class="icon-heart1 dis-block trans-04" src="~/Content/images1/icons/icon-heart-01.png" alt="ICON">
+                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/Content/images1/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>Không tìm thấy sản phẩm</p>
         }
     </div>
-}
-else
-{
-    <p>Không tìm thấy sản phẩm</p>
-}
+</div>

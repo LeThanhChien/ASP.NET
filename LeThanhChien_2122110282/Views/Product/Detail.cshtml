@@ -1,227 +1,495 @@
 ﻿@model LeThanhChien_2122110282.Context.Product
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Chi Tiết";
+    // Get discounted product IDs from ViewBag
+    var discountedProductIds = ViewBag.DiscountedProductIds as List<int> ?? new List<int>();
+    // Check if the current product is in the discounted list
+    var isDiscounted = discountedProductIds.Contains(Model.Id);
 }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Thêm Font Awesome CDN để hỗ trợ biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-    $(function () {
-        $("#addtocart").click(function () {
-            var model = {};
-            //lấy id sản phẩm
-            model.Id = @Model.Id;
-            // lấy số lượng đặt hàng
-            model.Quantity = $("#ipQuantity").val();
-            debugger;
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("AddToCart", "ShoppingCart")',
-                data:  JSON.stringify(model) ,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    alert("Thêm giỏ hàng thành công!")
-                    $('#CartCount').text(@Session["count"] + 1);
-                },
-                error: function () {
-                    alert("Lỗi trong khi thêm vào giỏ hàng!");
-                }
-            });
+$(document).ready(function() {
+    $('.quick-view-btn').click(function() {
+        var productId = $(this).data('id');
+        $('#quickViewModal').data('product-id', productId);
+        $('#modal-product-quantity').val(1); // Reset quantity when opening modal
+        $('#quickViewModal').modal('show');
+    });
+
+    $("#addtocart").click(function(e) {
+        e.preventDefault();
+        var productId = $('#quickViewModal').data('product-id') || @Model.Id;
+        var quantity = parseInt($("#modal-product-quantity").val()) || parseInt($("#quantity-@Model.Id").val()) || 1;
+
+        if (quantity < 1) {
+            Swal.fire('Lỗi!', 'Số lượng phải lớn hơn 0!', 'error');
             return false;
+        }
+
+        var model = {
+            Id: productId,
+            Quantity: quantity
+        };
+
+        console.log("Sending:", JSON.stringify(model));
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "ShoppingCart")',
+            data: JSON.stringify(model),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            headers: {
+                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+            },
+            success: function(response) {
+                $('#CartCount').text(response.count);
+                $('#quickViewModal').modal('hide');
+                Swal.fire('Thành công!', 'Thêm vào giỏ hàng thành công!', 'success');
+            },
+            error: function(xhr, status, error) {
+                console.log("Status:", status);
+                console.log("Error:", error);
+                console.log("Response:", xhr.responseText);
+                Swal.fire('Lỗi!', 'Có lỗi xảy ra khi thêm vào giỏ hàng: ' + xhr.responseText, 'error');
+            }
+        });
+        return false;
+    });
+
+    $('.btn-increase, .btn-num-product-up').click(function() {
+        var input = $(this).closest('.wrap-num-product').find('input');
+        input.val(parseInt(input.val()) + 1);
+    });
+
+    $('.btn-decrease, .btn-num-product-down').click(function() {
+        var input = $(this).closest('.wrap-num-product').find('input');
+        var val = parseInt(input.val());
+        if (val > 1) {
+            input.val(val - 1);
+        }
+    });
+
+    $('.add-to-wishlist').on('click', function (e) {
+        e.preventDefault();
+
+        var $button = $(this);
+        var productId = $button.data('product-id');
+        var quantity = 1; // Default quantity
+
+        if (!productId) {
+            alert('Không thể thêm vào danh sách yêu thích: ID sản phẩm không hợp lệ.');
+            return;
+        }
+
+        // Determine if the item is being added or removed
+        var isAdding = !$button.hasClass('added');
+
+        $.ajax({
+            type: 'POST',
+            url: isAdding ? '@Url.Action("AddToWishlist", "ShoppingCart")' : '@Url.Action("RemoveFromWishlist", "ShoppingCart")',
+            data: JSON.stringify({ Id: productId, Quantity: quantity }),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                if (response.success) {
+                    if (isAdding) {
+                        $button.addClass('added');
+                        Swal.fire('Thành công!', 'Đã thêm vào mục yêu thích thành công!', 'success');
+                    } else {
+                        $button.removeClass('added');
+                        alert('Đã xóa khỏi danh sách yêu thích thành công!');
+                    }
+                    $('#WishlistCount').text(response.wishlistCount);
+                } else {
+                    alert('Có lỗi xảy ra: ' + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Có lỗi xảy ra: ' + xhr.responseText);
+            }
         });
     });
+
+    // Xử lý sự kiện chia sẻ
+    $('.share-btn').click(function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        // Instagram không hỗ trợ chia sẻ trực tiếp qua URL, nên mở trong tab mới
+        if (url.includes('instagram.com')) {
+            window.open(url, '_blank');
+        } else {
+            window.open(url, 'share-window', 'width=600,height=400,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');
+        }
+        return false;
+    });
+});
 </script>
-@*<section class="py-3 bg-light">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#"> @Html.ActionLink("Home", "Index", "Home", new { }, null)</a></li>
-            <li class="breadcrumb-item"><a href="#">Category name</a></li>
-            <li class="breadcrumb-item"><a href="#">Sub category</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Items</li>
-        </ol>
-    </div>
-</section>*@
 
 <!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content bg-white padding-y">
+<div class="container" style="margin-top:100px">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="@Url.Action("Index","Home")" class="stext-109 cl8 hov-cl1 trans-04">
+            Trang Chủ
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="@Url.Action("AllListingGrid","ListingGrid")" class="stext-109 cl8 hov-cl1 trans-04">
+            Cửa Hàng
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">
+            Chi Tiết
+        </span>
+    </div>
+</div>
+<section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
-
-        <!-- ============================ ITEM DETAIL ======================== -->
         <div class="row">
-            <aside class="col-md-6">
-                <div class="card">
-                    <article class="gallery-wrap">
-                        <div class="img-big-wrap">
-                            <div> <a href="#"><img src="~/Content/images/items/@Model.Avatar"></a></div>
-                        </div> <!-- slider-product.// -->
-                        <div class="thumbs-wrap">
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-1.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-2.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-1.jpg"></a>
-                        </div> <!-- slider-nav.// -->
-                    </article> <!-- gallery-wrap .end// -->
-                </div> <!-- card.// -->
-            </aside>
-            <main class="col-md-6">
-                <article class="product-info-aside">
+            <div class="col-md-6 col-lg-7 p-b-20">
+                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    <div class="wrap-slick3 flex-sb flex-w">
+                        <div class="wrap-slick3-dots"></div>
+                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+                        <div class="wrap-pic-w pos-relative">
+                            <img src="~/Content/images1/@Model.Avatar" alt="IMG-PRODUCT">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <h2 class="title mt-3">@Model.Name</h2>
+            <div class="col-md-6 col-lg-5 p-b-30">
+                <div class="p-r-50 p-t-5 p-lr-0-lg">
+                    <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                        @Model.Name
+                    </h4>
 
-                    <div class="rating-wrap my-3">
-                        <ul class="rating-stars">
-                            <li style="width:80%" class="stars-active">
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </li>
-                            <li>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </li>
-                        </ul>
-                        <small class="label-rating text-muted">132 reviews</small>
-                        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
-                    </div> <!-- rating-wrap.// -->
+                    <span class="mtext-106 cl2">
+                        @if (isDiscounted && Model.PriceDiscount.HasValue && Model.PriceDiscount < Model.Price)
+                        {
+                            <span class="original-price" style="text-decoration: line-through; color: #999;">
+                                @string.Format("{0:N0}", Model.Price * 1000) VNĐ
+                            </span>
+                            <span class="discounted-price" style="color: #e74c3c;">
+                                @string.Format("{0:N0}", Model.PriceDiscount * 1000) VNĐ
+                            </span>
+                            <span class="discount-percentage" style="font-size: 14px; color: #e74c3c; margin-left: 10px;">
+                                (-@Math.Round(((Model.Price - Model.PriceDiscount) / Model.Price * 100) ?? 0)%)
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                @string.Format("{0:N0}", Model.Price * 1000) VNĐ
+                            </span>
+                        }
+                    </span>
 
-                    <div class="mb-3">
-                        <var class="price h4">@Model.Price</var>
-                        <span class="text-muted">USD 562.65 incl. VAT</span>
-                    </div> <!-- price-detail-wrap .// -->
-
-                    <p>
+                    <p class="stext-102 cl3 p-t-23">
                         @Model.ShortDes
                     </p>
 
+                    <!--  -->
+                    <div class="p-t-33">
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-203 respon6">
+                                Kích Cỡ
+                            </div>
 
-                    <dl class="row">
-                        <dt class="col-sm-3">Manufacturer</dt>
-                        <dd class="col-sm-9"><a href="#">Great textile Ltd.</a></dd>
-
-                        <dt class="col-sm-3">Article number</dt>
-                        <dd class="col-sm-9">596 065</dd>
-
-                        <dt class="col-sm-3">Guarantee</dt>
-                        <dd class="col-sm-9">2 year</dd>
-
-                        <dt class="col-sm-3">Delivery time</dt>
-                        <dd class="col-sm-9">3-4 days</dd>
-
-                        <dt class="col-sm-3">Availabilty</dt>
-                        <dd class="col-sm-9">in Stock</dd>
-                    </dl>
-
-                    <div class="form-row mt-4">
-                        <div class="form-group col-md flex-grow-0">
-                            <div class="input-group mb-3 input-spinner">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
-                                </div>
-                                <input type="text" id="ipQuantity" class="form-control" value="1">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                            <div class="size-204 respon6-next">
+                                <div class="rs1-select2 bor8 bg0">
+                                    <select class="js-select2 watch-size" name="size" data-placeholder="Chọn kích thước">
+                                        <option value="">Chọn kích thước</option>
+                                        <option value="36mm">36mm (Nhỏ gọn)</option>
+                                        <option value="40mm">40mm (Tiêu chuẩn)</option>
+                                        <option value="42mm">42mm (Trung bình)</option>
+                                        <option value="44mm">44mm (Lớn)</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-md">
-                            <a href="#" id="addtocart" class="btn btn-primary">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="text">Thêm vào giỏ hàng</span>
-                            </a>
+
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-203 respon6">
+                                Màu Sắc
+                            </div>
+
+                            <div class="size-204 respon6-next">
+                                <div class="rs1-select2 bor8 bg0">
+                                    <select class="js-select2 watch-color" name="color" data-placeholder="Chọn màu sắc">
+                                        <option value="">Chọn màu sắc</option>
+                                        <option value="gold">Vàng hồng 18K</option>
+                                        <option value="silver">Bạc (Thép không gỉ)</option>
+                                        <option value="black">Đen bóng</option>
+                                        <option value="rose-gold">Vàng hồng phấn</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-204 flex-w flex-m respon6-next">
+                                <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                        <i class="fs-16 zmdi zmdi-minus"></i>
+                                    </div>
+
+                                    <input id="quantity-@Model.Id" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+                                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                        <i class="fs-16 zmdi zmdi-plus"></i>
+                                    </div>
+                                </div>
+                                |
+                                <div class="block2-txt-child2 flex-r p-t-3" style="margin-left:50px">
+                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 add-to-wishlist" data-product-id="@Model.Id">
+                                        <img class="icon-heart1 dis-block trans-04" src="~/Content/images1/icons/icon-heart-01.png" alt="ICON">
+                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/Content/images1/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                </div>
+                                <div class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                    <a href="#" id="addtocart" style="color:aliceblue">
+                                        <span class="text">Thêm Vào Giỏ Hàng</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                </article> <!-- product-info-aside .// -->
-            </main> <!-- col.// -->
-        </div> <!-- row.// -->
-        <!-- ================ ITEM DETAIL END .// ================= -->
-
-
-    </div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y bg">
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-8">
-                <h5 class="title-description">Description</h5>
-                @Model.FullDescription
-            </div> <!-- col.// -->
-
-            <!--<aside class="col-md-4">
-
-                <div class="box">
-
-                    <h5 class="title-description">Files</h5>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-
-                    <h5 class="title-description">Videos</h5>
-
-
-                    <article class="media mb-3">
-                        <a href="#"><img class="img-sm mr-3" src="~/Content/images/posts/3.jpg"></a>
-                        <div class="media-body">
-                            <h6 class="mt-0"><a href="#">How to use this item</a></h6>
-                            <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-                        </div>
-                    </article>
-
-                    <article class="media mb-3">
-                        <a href="#"><img class="img-sm mr-3" src="~/Content/images/posts/2.jpg"></a>
-                        <div class="media-body">
-                            <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-                            <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-                        </div>
-                    </article>
-
-                    <article class="media mb-3">
-                        <a href="#"><img class="img-sm mr-3" src="~/Content/images/posts/1.jpg"></a>
-                        <div class="media-body">
-                            <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-                            <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-                        </div>
-                    </article>
-
-
-
-                </div>--> <!-- box.// -->
-            <!--</aside>--> <!-- col.// -->
-        <!--</div>--> <!-- row.// -->
-
-    </div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= SECTION SUBSCRIBE  ========================= -->
-<section class="padding-y-lg bg-light border-top">
-    <div class="container">
-
-        <p class="pb-2 text-center">Delivering the latest product trends and industry news straight to your inbox</p>
-
-        <div class="row justify-content-md-center">
-            <div class="col-lg-4 col-sm-6">
-                <form class="form-row">
-                    <div class="col-8">
-                        <input class="form-control" placeholder="Your Email" type="email">
-                    </div> <!-- col.// -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
-                    </div> <!-- col.// -->
-                </form>
-                <small class="form-text">We’ll never share your email address with a third-party. </small>
-            </div> <!-- col-md-6.// -->
+                    <!-- Chia sẻ -->
+                    <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=@(Url.Action("Product", "Product", new { id = Model.Id }, Request.Url.Scheme))"
+                           class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100 share-btn facebook"
+                           data-tooltip="Chia sẻ lên Facebook"
+                           target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/?url=@(Url.Action("Product", "Product", new { id = Model.Id }, Request.Url.Scheme))"
+                           class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100 share-btn instagram"
+                           data-tooltip="Chia sẻ lên Instagram"
+                           target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://m.me/?text=@(HttpUtility.UrlEncode(Model.Name + " "))@(Url.Action("Product", "Product", new { id = Model.Id }, Request.Url.Scheme))"
+                           class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100 share-btn messenger"
+                           data-tooltip="Chia sẻ qua Messenger"
+                           target="_blank">
+                            <i class="fab fa-facebook-messenger"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <div class="bor10 m-t-50 p-t-43 p-b-40">
+            <!-- Tab01 -->
+            <div class="tab01">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Mô Tả</a>
+                    </li>
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh Giá (1)</a>
+                    </li>
+                </ul>
 
+                <!-- Tab panes -->
+                <div class="tab-content p-t-43">
+                    <!-- - -->
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        <div class="how-pos2 p-lr-15-md">
+                            <p class="stext-102 cl6">
+                                @Model.FullDescription
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        <div class="row">
+                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                <div class="p-b-30 m-lr-15-sm">
+                                    <!-- Review -->
+                                    <div class="flex-w flex-t p-b-68">
+                                        <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                            <img src="~/Content/images1/avatar-01.jpg" alt="AVATAR">
+                                        </div>
+                                        <div class="size-207">
+                                            <div class="flex-w flex-sb-m p-b-17">
+                                                <span class="mtext-107 cl2 p-r-20">
+                                                    Ariana Grande
+                                                </span>
+                                                <span class="fs-18 cl11">
+                                                    <i class="zmdi zmdi-star"></i>
+                                                    <i class="zmdi zmdi-star"></i>
+                                                    <i class="zmdi zmdi-star"></i>
+                                                    <i class="zmdi zmdi-star"></i>
+                                                    <i class="zmdi zmdi-star-half"></i>
+                                                </span>
+                                            </div>
+                                            <p class="stext-102 cl6">
+                                                Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add review -->
+                                    <form class="w-full">
+                                        <h5 class="mtext-108 cl2 p-b-7">
+                                            Thêm Đánh Giá
+                                        </h5>
+                                        <p class="stext-102 cl6">
+                                            Địa chỉ email của bạn sẽ không được công khai. Các trường bắt buộc được đánh dấu *
+                                        </p>
+                                        <div class="flex-w flex-m p-t-50 p-b-23">
+                                            <span class="stext-102 cl3 m-r-16">
+                                                Điểm Đánh Giá
+                                            </span>
+                                            <span class="wrap-rating fs-18 cl11 pointer">
+                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                <input class="dis-none" type="number" name="rating">
+                                            </span>
+                                        </div>
+                                        <div class="row p-b-25">
+                                            <div class="col-12 p-b-5">
+                                                <label class="stext-102 cl3" for="review">Đánh giá của bạn</label>
+                                                <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
+                                            </div>
+                                            <div class="col-sm-6 p-b-5">
+                                                <label class="stext-102 cl3" for="name">Tên</label>
+                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
+                                            </div>
+                                            <div class="col-sm-6 p-b-5">
+                                                <label class="stext-102 cl3" for="email">Email</label>
+                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
+                                            </div>
+                                        </div>
+                                        <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+                                            Gửi
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+
+<style>
+    .btn-addwish-b2 {
+        position: relative;
+        display: inline-block;
+        border: none !important;
+        background: none !important;
+        padding: 0;
+    }
+
+    .icon-heart1, .icon-heart2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        width: 20px;
+        height: 20px;
+        border: none !important;
+        background: none !important;
+    }
+
+    .icon-heart2 {
+        opacity: 0;
+    }
+
+    .btn-addwish-b2.added .icon-heart1 {
+        opacity: 0;
+    }
+
+    .btn-addwish-b2.added .icon-heart2 {
+        opacity: 1;
+    }
+
+    .block2-txt-child2 {
+        border: none !important;
+        background: none !important;
+    }
+
+    .btn-addwish-b2:hover,
+    .btn-addwish-b2:focus {
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    /* CSS cho nút chia sẻ */
+    .share-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #f1f1f1;
+        transition: background-color 0.3s;
+    }
+
+        .share-btn:hover {
+            background-color: #d1d1d1;
+        }
+
+        .share-btn i, .share-btn img {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        /* Màu sắc chính thức cho từng nền tảng */
+        .share-btn.facebook i {
+            color: #1877F2; /* Màu xanh dương Facebook */
+        }
+
+        .share-btn.instagram i {
+            color: #E4405F; /* Màu đỏ hồng Instagram */
+        }
+
+        .share-btn.zalo {
+            background-color: #0068FF; /* Màu xanh dương Zalo cho nền */
+        }
+
+            .share-btn.zalo img {
+                filter: brightness(0) invert(1); /* Đảm bảo hình ảnh Zalo hiển thị trắng trên nền xanh */
+            }
+
+        .share-btn.messenger i {
+            color: #00B2FF; /* Màu xanh dương nhạt Messenger */
+        }
+
+        /* Hover: Làm sáng màu nền dựa trên màu biểu tượng */
+        .share-btn.facebook:hover {
+            background-color: #e6f0ff; /* Xanh nhạt hơn */
+        }
+
+        .share-btn.instagram:hover {
+            background-color: #fce7ec; /* Hồng nhạt */
+        }
+
+        .share-btn.zalo:hover {
+            background-color: #338cff; /* Xanh sáng hơn */
+        }
+
+        .share-btn.messenger:hover {
+            background-color: #e6f7ff; /* Xanh nhạt hơn */
+        }
+</style>

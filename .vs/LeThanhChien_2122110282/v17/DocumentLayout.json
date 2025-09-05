@@ -3,132 +3,260 @@
   "WorkspaceRootPath": "D:\\1\\LeThanhChien_2122110282\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\userregister\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\userregister\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\listinggridcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\listinggridcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|d:\\1\\lethanhchien_2122110282\\lethanhchien_2122110282\\views\\home\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|d:\\1\\lethanhchien_2122110282\\lethanhchien_2122110282\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\listinggrid\\alllistinggrid.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\listinggrid\\alllistinggrid.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\product\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\product\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\category\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\category\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\shoppingcart\\allshoppingcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\shoppingcart\\allshoppingcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\models\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\models\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\category\\categorylist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\category\\categorylist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\brand\\brandlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\brand\\brandlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\models\\homemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\models\\homemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\context\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\context\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\listinglarge\\alllistinglarge.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\listinglarge\\alllistinglarge.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\category\\allcategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\category\\allcategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\listinggrid\\alllistinggrid.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\listinggrid\\alllistinggrid.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\paypalcheckout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\paypalcheckout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\paypalconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\paypalconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\orderconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\orderconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\shoppingcart\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\shoppingcart\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\shoppingcart\\orderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\shoppingcart\\orderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\shoppingcart\\ordertracking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\shoppingcart\\ordertracking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\momocheckout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\momocheckout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\listinglargecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\listinglargecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\product\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\product\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\listinggridcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\listinggridcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\shoppingcart\\allshoppingcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\shoppingcart\\allshoppingcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\models\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\models\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\context\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\context\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\context\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\context\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\models\\momocheckoutmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\models\\momocheckoutmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\momoconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\momoconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\userregistercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\userregistercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\userregister\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\userregister\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\contentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\contentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\components\\components.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\components\\components.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\category\\categorylist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\category\\categorylist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\user\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\user\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\brand\\brandlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\brand\\brandlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\order\\orderlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\order\\orderlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\user\\userlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\user\\userlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\models\\homemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\models\\homemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\shoppingcart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\shoppingcart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\home\\blog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\home\\blog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\context\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\context\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\context\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\context\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\context\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\context\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\controllers\\componentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\controllers\\componentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\areas\\admin\\views\\category\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\areas\\admin\\views\\category\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\views\\category\\allcategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|solutionrelative:lethanhchien_2122110282\\views\\category\\allcategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BE9541BB-54EA-480E-864C-5159805250B3}|LeThanhChien_2122110282\\LeThanhChien_2122110282.csproj|D:\\1\\LeThanhChien_2122110282\\lethanhchien_2122110282\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -158,7 +286,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -166,32 +294,609 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Search.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
-              "ViewState": "AgIAABEAAAAAAAAAAAAuwCoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-17T10:21:57.687Z",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAANcAAAAAAAAAAAAYwF8BAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T10:29:02.122Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PayPalCheckout.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\PayPalCheckout.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\PayPalCheckout.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\PayPalCheckout.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\PayPalCheckout.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-22T01:59:27.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AllListingGrid.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAABABAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T07:47:26.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AllListingLarge.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAQwM0AAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-03T13:19:07.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFsAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T11:00:52.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAMcDAAAAAAAAAAAIwOYDAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-13T10:29:50.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABkBAAAAAAAAAAAkwIABAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-03T11:07:53.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PayPalConfirmation.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\PayPalConfirmation.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\PayPalConfirmation.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\PayPalConfirmation.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\PayPalConfirmation.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowA0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-22T03:04:19.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OrderConfirmation.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\OrderConfirmation.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\OrderConfirmation.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\OrderConfirmation.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\OrderConfirmation.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T09:07:31.246Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "ShoppingCartController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
+              "ViewState": "AgIAAMsBAAAAAAAAAAAgwNoBAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T09:13:47.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OrderDetails.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderDetails.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderDetails.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderDetails.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderDetails.cshtml",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAIwKkBAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-22T04:03:38.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Wishlist.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\Wishlist.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ShoppingCart\\Wishlist.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\Wishlist.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ShoppingCart\\Wishlist.cshtml",
+              "ViewState": "AgIAALAAAAAAAAAAAAAIwL4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-24T02:05:38.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MoMoCheckout.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\MoMoCheckout.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\MoMoCheckout.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\MoMoCheckout.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\MoMoCheckout.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T09:40:01.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OrderTracking.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderTracking.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderTracking.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderTracking.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ShoppingCart\\OrderTracking.cshtml",
+              "ViewState": "AgIAAI0BAAAAAAAAAAAIwKEBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T02:25:48.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Checkout.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Checkout.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Checkout.cshtml",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAFcAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T09:29:21.819Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ListingLargeController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwCIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T13:08:43.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
+              "ViewState": "AgIAAMUBAAAAAAAAAAAQwN4BAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-03T12:51:43.049Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ListingGridController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAADwvxsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T10:07:11.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T12:47:12.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CartModel.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\CartModel.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Models\\CartModel.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\CartModel.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Models\\CartModel.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAswA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-17T09:04:00.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AllShoppingCart.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAIwKAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-17T09:02:40.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Product.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Context\\Product.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Product.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Context\\Product.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAA1wCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T03:20:50.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Order.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Context\\Order.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Order.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Context\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T11:20:31.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "MoMoCheckoutModel.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\MoMoCheckoutModel.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Models\\MoMoCheckoutModel.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\MoMoCheckoutModel.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Models\\MoMoCheckoutModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T15:57:16.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MoMoConfirmation.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\MoMoConfirmation.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\MoMoConfirmation.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\MoMoConfirmation.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\MoMoConfirmation.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAUwFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T16:14:44.68Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "UserRegisterController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAuwB4AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T08:01:32.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
+              "ViewState": "AgIAALQAAAAAAAAAAAAAAFUAAAB8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T08:10:42.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Contact.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Contact.cshtml",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAqwFcAAACdAQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T09:56:56.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ContentController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ContentController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ContentController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ContentController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ContentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T10:00:04.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-24T03:41:40.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Components.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Components\\Components.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Components\\Components.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Components\\Components.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Components\\Components.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-24T02:11:15.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "UserList.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\UserList.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\UserList.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\UserList.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\UserList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T11:30:40.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Details.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Details.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Details.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Details.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T11:41:05.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Edit.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Edit.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Edit.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Edit.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAqwH0AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-17T09:52:48.783Z"
+              "WhenOpened": "2025-04-15T11:48:36.645Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 41,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\Create.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\Create.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\Create.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\User\\Create.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T12:01:29.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\UserController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T11:30:31.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T11:28:29.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "OrderList.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Order\\OrderList.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Order\\OrderList.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Order\\OrderList.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Order\\OrderList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T11:24:02.07Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T11:22:05.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "Category.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Category.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Context\\Category.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Category.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Context\\Category.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAYwBsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T03:20:37.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "Brand.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Brand.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Context\\Brand.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Brand.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Context\\Brand.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAA/wBsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T03:15:16.355Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Model1.edmx",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Context\\Model1.edmx",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Context\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-04-10T03:11:45.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "Cart.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\Cart.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ShoppingCart\\Cart.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\Cart.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ShoppingCart\\Cart.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAUwGYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T16:54:35.288Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "BrandController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\BrandController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\BrandController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\BrandController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\BrandController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wEgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T15:12:06.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Web.config",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Web.config",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Web.config",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Web.config",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAMwBQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-04-04T06:55:34.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Profile.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Profile.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Profile.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Profile.cshtml",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAUwNEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T06:41:40.078Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "Blog.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Blog.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Blog.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Blog.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Blog.cshtml",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAUwLcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T11:01:57.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "ComponentsController.cs",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ComponentsController.cs",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ComponentsController.cs",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ComponentsController.cs",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ComponentsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T09:59:43.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\About.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\About.cshtml",
+              "ViewState": "AgIAACMAAAAAAAAAAAAUwDMAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T09:52:40.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Search.cshtml",
+              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
+              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
+              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
+              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Search.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-17T10:21:57.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Category\\Edit.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Category\\Edit.cshtml",
@@ -203,141 +908,91 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "CartModel.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\CartModel.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Models\\CartModel.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\CartModel.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Models\\CartModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-17T09:04:00.47Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AllShoppingCart.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ShoppingCart\\AllShoppingCart.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-17T09:02:40.297Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 37,
               "Title": "CategoryList.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Category\\CategoryList.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Category\\CategoryList.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Category\\CategoryList.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Category\\CategoryList.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAqwIIAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-17T08:50:32.478Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 44,
               "Title": "BrandList.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Brand\\BrandList.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Brand\\BrandList.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Brand\\BrandList.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Brand\\BrandList.cshtml",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAAAHsAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-17T08:41:41.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 51,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\CategoryController.cs",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAcwFIAAABKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-17T08:34:46.019Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 40,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Create.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Create.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Create.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Create.cshtml",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHYAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAACwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-17T08:31:21.067Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-17T08:31:21.067Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 38,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Delete.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Delete.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Delete.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAqwG8AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-17T08:31:19.415Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 42,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\ProductController.cs",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\ProductController.cs",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAswF8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-17T08:27:43.209Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-17T08:27:43.209Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 36,
               "Title": "ProductList.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\ProductList.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\ProductList.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\ProductList.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Product\\ProductList.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-17T08:26:37.201Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Product.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Context\\Product.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Context\\Product.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Context\\Product.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAA9wCIAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-17T07:16:15.022Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Login.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-04T11:00:52.244Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 64,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\App_Start\\RouteConfig.cs",
@@ -349,105 +1004,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ShoppingCartController.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ShoppingCartController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T09:13:47.357Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\UserRegister\\Register.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-04T08:10:42.139Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "UserRegisterController.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\UserRegisterController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAACkAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T08:01:32.417Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AllListingGrid.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ListingGrid\\AllListingGrid.cshtml",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAuwL4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-04T07:47:26.895Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "AllListingLarge.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\ListingLarge\\AllListingLarge.cshtml",
-              "ViewState": "AgIAACkBAAAAAAAAAAAAAJ4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-03T13:19:07.767Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "ListingLargeController.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ListingLargeController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T13:08:43.246Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Detail.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Product\\Detail.cshtml",
-              "ViewState": "AgIAAMoAAAAAAAAAAAAmwNoAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-03T12:51:43.049Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ProductController.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T12:47:12.377Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 63,
               "Title": "AllCategory.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Category\\AllCategory.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Category\\AllCategory.cshtml",
@@ -459,7 +1016,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 59,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\CategoryController.cs",
@@ -471,45 +1028,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAOAAAAAAAAAAAAAAAPgAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-03T11:07:53.524Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 52,
               "Title": "HomeModel.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\HomeModel.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Models\\HomeModel.cs",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Models\\HomeModel.cs",
               "RelativeToolTip": "LeThanhChien_2122110282\\Models\\HomeModel.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAmwA0AAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-03T10:41:10.978Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ListingGridController.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\ListingGridController.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAADwvw0AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T10:07:11.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 68,
               "Title": "Global.asax.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Global.asax.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Global.asax.cs",
@@ -521,31 +1052,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 35,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Home\\Index.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAFsCAAAAAAAAAAAAABIAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEQAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-03T09:37:02.55Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 33,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\HomeController.cs",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\HomeController.cs",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAkwA8AAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAkwBAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-03T09:37:00.796Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 66,
               "Title": "BundleConfig.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\App_Start\\BundleConfig.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\App_Start\\BundleConfig.cs",
@@ -557,7 +1088,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 65,
               "Title": "FilterConfig.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\App_Start\\FilterConfig.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\App_Start\\FilterConfig.cs",
@@ -569,7 +1100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 67,
               "Title": "AdminAreaRegistration.cs",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\AdminAreaRegistration.cs",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\AdminAreaRegistration.cs",
@@ -581,40 +1112,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 34,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "LeThanhChien_2122110282\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAOEAAAAAAAAAAAAAADwBAABLAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAuwDAAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-03T08:19:58.07Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAANgAAAAAAAAAAAAAAPkAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-13T10:29:50.669Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "LeThanhChien_2122110282\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\1\\LeThanhChien_2122110282\\LeThanhChien_2122110282\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "LeThanhChien_2122110282\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAwB0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T10:29:02.122Z",
-              "EditorCaption": ""
             }
           ]
         }

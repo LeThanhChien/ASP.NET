@@ -28,7 +28,7 @@ namespace LeThanhChien_2122110282.Controllers
             {
                 if (string.IsNullOrEmpty(_user.Email) || string.IsNullOrEmpty(_user.Password))
                 {
-                    ViewBag.error = "Email and Password cannot be null";
+                    ViewBag.error = "Email hoặc Password không đúng";
                     return View();
                 }
 
@@ -39,12 +39,12 @@ namespace LeThanhChien_2122110282.Controllers
                     objCSDLASPEntities2.Configuration.ValidateOnSaveEnabled = false;
                     objCSDLASPEntities2.Users.Add(_user);
                     objCSDLASPEntities2.SaveChanges();
-                    TempData["SuccessMessage"] = "Registration successful! Please log in.";
+                    TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
                     return RedirectToAction("Login", "Home");
                 }
                 else
                 {
-                    ViewBag.error = "Email already exists";
+                    ViewBag.error = "Email đã tồn tại";
                     return View();
                 }
             }
@@ -72,6 +72,7 @@ namespace LeThanhChien_2122110282.Controllers
                 return byte2String.ToString();
             }
         }
+
 
 
     }

@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Xác nhận đơn hàng";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<div class="order-confirmation-section" style="margin-top:100px">
+    <div class="container text-center">
+        <div class="confirmation-box">
+            <i class="fas fa-check-circle confirmation-icon animate__animated animate__bounceIn"></i>
+            <h1 class="confirmation-title">Đơn hàng đã được xác nhận!</h1>
+            <p class="confirmation-message">@ViewBag.Message"Cảm ơn bạn đã tin tưởng mua hàng với chúng tôi!"</p>
+            <a href="@Url.Action("Index", "Home")" class="btn-custom">Quay lại Trang chủ</a>
+            <a href="@Url.Action("OrderTracking", "ShoppingCart")" class="btn-custom">Xem đơn hàng</a>
+        </div>
+    </div>
+</div>
+<style>
+    .order-confirmation-section {
+        background-color: #f4f5f7;
+        padding: 60px 0;
+    }
+
+    .confirmation-box {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .confirmation-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .confirmation-message {
+        font-size: 18px;
+        color: #7f8c8d;
+        padding-bottom:20px;
+    }
+
+    .confirmation-icon {
+        font-size: 72px;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    .btn-custom {
+        font-size: 20px;
+        padding: 12px 30px;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        color: #fff;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-custom:hover {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+            transform: scale(1.05);
+        }
+</style>
+

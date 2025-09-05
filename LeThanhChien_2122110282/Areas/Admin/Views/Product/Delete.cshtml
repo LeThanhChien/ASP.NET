@@ -1,81 +1,123 @@
 ﻿@model LeThanhChien_2122110282.Context.Product
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Xóa sản phẩm";
 }
 
-<h3>Bạn có chắc chắn muốn xóa sản phẩm này không?</h3>
-<div>
-    <hr />
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>Field</th>
-                <th>Value</th>
-            </tr>
-        </thead>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    body {
+        background-color: #f4f5f7;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .delete-container {
+        max-width: 900px;
+        margin: auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #c0392b;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #34495e;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f7f9fc;
+        }
+
+    .product-image {
+        max-width: 120px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .action-buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        border: none;
+        font-size: 18px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        color: #ffffff;
+        transition: 0.3s ease-in-out;
+    }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+    .btn-secondary {
+        background-color: #7f8c8d;
+        border: none;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        color: #fff;
+        transition: 0.3s ease-in-out;
+        text-decoration: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5e6b73;
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="delete-container">
+    <h3>Bạn có chắc chắn muốn xóa sản phẩm này không?</h3>
+
+    <table class="table">
         <tbody>
             <tr>
-                <td>@Html.DisplayNameFor(model => model.Name)</td>
+                <th>Tên sản phẩm</th>
                 <td>@Html.DisplayFor(model => model.Name)</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(model => model.Avatar)</td>
-                <td>                    
-                <img src="@Url.Content("~/Content/images/items/" + Model.Avatar)" alt="Avatar" class="img-fluid" style="max-width: 100px;" />                </td>
-                </td>
+                <th>Hình ảnh</th>
+                <td><img src="@Url.Content("~/Content/images1/" + Model.Avatar)" alt="Hình ảnh sản phẩm" class="product-image" /></td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(model => model.CategoryId)</td>
-                <td>@Html.DisplayFor(model => model.CategoryId)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.ShortDes)</td>
-                <td>@Html.DisplayFor(model => model.ShortDes)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.FullDescription)</td>
-                <td>@Html.DisplayFor(model => model.FullDescription)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.Price)</td>
+                <th>Giá</th>
                 <td>@Html.DisplayFor(model => model.Price)</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(model => model.PriceDiscount)</td>
-                <td>@Html.DisplayFor(model => model.PriceDiscount)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.TypeId)</td>
-                <td>@Html.DisplayFor(model => model.TypeId)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.Slug)</td>
-                <td>@Html.DisplayFor(model => model.Slug)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.BrandId)</td>
-                <td>@Html.DisplayFor(model => model.BrandId)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.Deleted)</td>
-                <td>@Html.DisplayFor(model => model.Deleted)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.ShowOnHomePage)</td>
-                <td>@Html.DisplayFor(model => model.ShowOnHomePage)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.DisplayOrder)</td>
-                <td>@Html.DisplayFor(model => model.DisplayOrder)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.CreatedOnUtc)</td>
-                <td>@Html.DisplayFor(model => model.CreatedOnUtc)</td>
-            </tr>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.UpdatedOnUtc)</td>
-                <td>@Html.DisplayFor(model => model.UpdatedOnUtc)</td>
+                <th>Mô tả ngắn</th>
+                <td>@Html.DisplayFor(model => model.ShortDes)</td>
             </tr>
         </tbody>
     </table>
@@ -83,10 +125,9 @@
     @using (Html.BeginForm("Delete", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
-
-        <div class="form-actions">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Back to List", "ProductList", "Product", new { @class = "btn btn-secondary" })
+        <div class="action-buttons">
+            <input type="submit" value="Xóa sản phẩm" class="btn-danger" />
+            <a href="@Url.Action("ProductList", "Product")" class="btn-secondary">Quay lại danh sách</a>
         </div>
     }
 </div>

@@ -34,12 +34,13 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="CSDLASPModel.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

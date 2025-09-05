@@ -1,0 +1,232 @@
+﻿@{
+    ViewBag.Title = "Thanh Toán";
+    // Get discounted product IDs from ViewBag
+    var discountedProductIds = ViewBag.DiscountedProductIds as List<int> ?? new List<int>();
+
+    decimal subtotal = 0;
+    if (Session["Cart"] != null)
+    {
+        var cart = (List<LeThanhChien_2122110282.Models.CartModel>)Session["Cart"];
+        foreach (var item in cart)
+        {
+            // Determine if the product is in the discounted list
+            var isDiscounted = discountedProductIds.Contains(item.Product.Id);
+            var priceToUse = isDiscounted && item.Product.PriceDiscount.HasValue && item.Product.PriceDiscount.Value < (item.Product.Price ?? 0)
+                ? item.Product.PriceDiscount.Value
+                : (item.Product.Price ?? 0);
+            subtotal += (decimal)priceToUse * item.Quantity;
+        }
+    }
+    decimal total = subtotal;
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- For confirmation dialogs -->
+<script>
+    $(document).ready(function () {
+        $('#checkoutButton').click(function (e) {
+            e.preventDefault(); // Ngăn form nạp lại trang
+
+            // Lấy thông tin từ giao diện
+            var fullName = $('#FullName').val();
+            var address = $('#Address').val();
+            var email = $('#Email').val();
+            var paymentMethod = $('input[name="paymentMethod"]:checked').val();
+            var token = $('input[name="__RequestVerificationToken"]').val(); // Lấy token
+
+            // Kiểm tra thông tin bắt buộc
+            if (!fullName || !address || !email) {
+                Swal.fire("Vui lòng điền đầy đủ thông tin trước khi thanh toán.");
+                return;
+            }
+            if (!paymentMethod) {
+                Swal.fire("Vui lòng chọn phương thức thanh toán.");
+                return;
+            }
+
+            // Kiểm tra và chuyển hướng dựa trên phương thức thanh toán
+            if (paymentMethod === "MoMo") {
+                window.location.href = `/Home/MoMoCheckout?FullName=${encodeURIComponent(fullName)}&Address=${encodeURIComponent(address)}&Email=${encodeURIComponent(email)}`;
+            } else if (paymentMethod === "PayPal") {
+                window.location.href = `/Home/PayPalCheckout?FullName=${encodeURIComponent(fullName)}&Address=${encodeURIComponent(address)}&Email=${encodeURIComponent(email)}`;
+            } else {
+                // AJAX xử lý các phương thức thanh toán khác (e.g., Cash on Delivery)
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Checkout",
+                    data: {
+                        __RequestVerificationToken: token,
+                        FullName: fullName,
+                        Address: address,
+                        Email: email,
+                        paymentMethod: paymentMethod
+                    },
+                    success: function () {
+                        Swal.fire('Thành công!', 'Thanh toán thành công!', 'success');
+                        window.location.href = "/Home/OrderConfirmation";
+                    },
+                    error: function (error) {
+                        console.error("Lỗi xảy ra:", error);
+                        alert("Đã xảy ra lỗi khi xử lý thanh toán.");
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<section class="checkout-section bg-light" style="padding: 60px 0; margin-top:30px">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-primary">Thanh Toán</h2>
+            <p class="text-muted">Xem lại đơn hàng và hoàn tất mua sắm</p>
+        </div>
+
+        <div class="row">
+            <!-- Billing Details -->
+            <div class="col-lg-6">
+                <div class="card shadow-lg rounded-3 mb-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-primary mb-4">Thông Tin Thanh Toán</h5>
+                        <form>
+                            @Html.AntiForgeryToken()
+                            <!-- Full Name -->
+                            <div class="mb-3">
+                                <label for="FullName" class="form-label fw-bold">Họ và Tên</label>
+                                <input id="FullName" type="text" class="form-control py-2" placeholder="Nhập họ và tên của bạn" required>
+                            </div>
+                            <!-- Address -->
+                            <div class="mb-3">
+                                <label for="Address" class="form-label fw-bold">Địa Chỉ</label>
+                                <input id="Address" type="text" class="form-control py-2" placeholder="Nhập địa chỉ của bạn" required>
+                            </div>
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="Email" class="form-label fw-bold">Địa Chỉ Email</label>
+                                <input id="Email" type="email" class="form-control py-2" placeholder="Nhập địa chỉ email của bạn" required>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-6">
+                <div class="card shadow-lg rounded-3 mb-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-primary mb-4">Tóm Tắt Đơn Hàng</h5>
+                        <ul class="list-group mb-4">
+                            @if (Session["Cart"] != null)
+                            {
+                                var cart = (List<LeThanhChien_2122110282.Models.CartModel>)Session["Cart"];
+                                foreach (var item in cart)
+                                {
+                                    // Determine if the product is in the discounted list
+                                    var isDiscounted = discountedProductIds.Contains(item.Product.Id);
+                                    var priceToUse = isDiscounted && item.Product.PriceDiscount.HasValue && item.Product.PriceDiscount.Value < (item.Product.Price ?? 0)
+                                        ? item.Product.PriceDiscount.Value
+                                        : (item.Product.Price ?? 0);
+                                    var discountPercentage = isDiscounted && item.Product.PriceDiscount.HasValue && item.Product.PriceDiscount.Value < (item.Product.Price ?? 0)
+                                        ? Math.Round((((item.Product.Price ?? 0) - item.Product.PriceDiscount.Value) / (item.Product.Price ?? 1)) * 100)
+                                        : 0.0;
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>@item.Product.Name (x @item.Quantity)</span>
+                                        @if (isDiscounted && item.Product.PriceDiscount.HasValue && item.Product.PriceDiscount.Value < (item.Product.Price ?? 0))
+                                        {
+                                            <span>
+                                                <span style="text-decoration: line-through; color: #999; margin-right: 10px;">
+                                                    @string.Format("{0:N0}", (item.Product.Price ?? 0) * item.Quantity * 1000) đ
+                                                </span>
+                                                <span style="color: #e74c3c;">
+                                                    @string.Format("{0:N0}", item.Product.PriceDiscount.Value * item.Quantity * 1000) đ
+                                                </span>
+                                                <span style="color: #e74c3c; font-size: 0.9rem; margin-left: 10px;">
+                                                    (-@discountPercentage%)
+                                                </span>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                @string.Format("{0:N0}", (item.Product.Price ?? 0) * item.Quantity * 1000) đ
+                                            </span>
+                                        }
+                                    </li>
+                                }
+                            }
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Tạm Tính:</strong>
+                                <strong>@string.Format("{0:N0}", subtotal * 1000) đ</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Tổng Cộng:</strong>
+                                <strong>@string.Format("{0:N0}", total * 1000) đ</strong>
+                            </li>
+                        </ul>
+
+                        <!-- Payment Methods -->
+                        <h5 class="fw-bold text-primary mb-4">Phương Thức Thanh Toán</h5>
+                        <div>
+                            <input type="radio" name="paymentMethod" value="Cash on Delivery" />
+                            <label for="cod">Thanh Toán Khi Nhận Hàng</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="paymentMethod" value="MoMo" />
+                            <label for="momo">Ví MoMo</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="paymentMethod" value="PayPal" />
+                            <label for="paypal">PayPal</label>
+                        </div>
+
+                        <button id="checkoutButton" class="btn btn-primary w-100 mt-4">Đặt Hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Styling -->
+<style>
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background: #0d6efd;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        transition: background 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+    .form-control:focus {
+        border-color: #86b7fe;
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #217aff;
+    }
+</style>

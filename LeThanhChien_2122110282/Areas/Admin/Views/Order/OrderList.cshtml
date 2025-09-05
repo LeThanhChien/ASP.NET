@@ -1,0 +1,135 @@
+﻿@model IEnumerable<LeThanhChien_2122110282.Context.Order>
+
+@{
+    ViewBag.Title = "Danh sách đơn hàng";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f4f5f7;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .order-container {
+        max-width: 2000px;
+        margin: auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #2c3e50;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f7f9fc;
+        }
+
+    .action-links a {
+        display: inline-block;
+        margin-right: 8px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+        .action-links a:hover {
+            transform: scale(1.05);
+        }
+
+    .btn-create {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        color: #ffffff;
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-create:hover {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="order-container">
+    <h2>Danh sách đơn hàng</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn-create">
+            <i class="fas fa-plus-circle"></i> Tạo đơn hàng mới
+        </a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.ProductId)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>@Html.DisplayNameFor(model => model.CreatedOnUtc)</th>
+                <th>@Html.DisplayNameFor(model => model.PaymentMethod)</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CreatedOnUtc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
+                    <td class="action-links">
+                        <a href="@Url.Action("Edit", new { id = item.Id })" style="color: #3498db;">
+                            <i class="fas fa-edit"></i> Chỉnh sửa
+                        </a>
+                        <a href="@Url.Action("Details", new { id = item.Id })" style="color: #2ecc71;">
+                            <i class="fas fa-info-circle"></i> Chi tiết
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = item.Id })" style="color: #e74c3c;">
+                            <i class="fas fa-trash-alt"></i> Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

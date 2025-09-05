@@ -15,8 +15,6 @@ namespace LeThanhChien_2122110282.Context
 
     public partial class Product
     {
-        internal object obj;
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string Avatar { get; set; }
@@ -36,6 +34,5 @@ namespace LeThanhChien_2122110282.Context
 
         [NotMapped]
         public System.Web.HttpPostedFileBase ImageUpload { get; set; }
-        
     }
 }

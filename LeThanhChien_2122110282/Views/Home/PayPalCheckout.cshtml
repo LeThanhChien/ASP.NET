@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "Thanh Toán PayPal";
+    decimal totalAmount = ViewBag.TotalAmount;
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<section class="checkout-section bg-light" style="padding: 60px 0; margin-top:30px">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-primary">THANH TOÁN PAYPAL</h2>
+            <p class="text-muted">Hoàn tất thanh toán qua PayPal</p>
+        </div>
+
+        <div class="row">
+            <!-- Billing Details -->
+            <div class="col-lg-6">
+                <div class="card shadow-lg rounded-3 mb-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-primary mb-4">THÔNG TIN THANH TOÁN</h5>
+                        <form id="paypal-form">
+                            @Html.AntiForgeryToken()
+                            <div class="mb-3">
+                                <label for="FullName" class="form-label fw-bold">Họ và Tên</label>
+                                <input id="FullName" type="text" class="form-control py-2" placeholder="Nhập họ và tên của bạn" value="@ViewBag.FullName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Address" class="form-label fw-bold">Địa Chỉ</label>
+                                <input id="Address" type="text" class="form-control py-2" placeholder="Nhập địa chỉ của bạn" value="@ViewBag.Address" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Email" class="form-label fw-bold">Địa Chỉ Email</label>
+                                <input id="Email" type="email" class="form-control py-2" placeholder="Nhập địa chỉ email của bạn" value="@ViewBag.Email" required>
+                            </div>
+                            <div id="paypal-button-container" class="mt-4"></div>
+                            <div id="error-message" class="text-danger mt-3"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-6">
+                <div class="card shadow-lg rounded-3 mb-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-primary mb-4">TỐM TẮT ĐƠN HÀNG</h5>
+                        <ul class="list-group mb-4">
+                            @if (Session["cart"] != null)
+                            {
+                                var cart = (List<LeThanhChien_2122110282.Models.CartModel>)Session["cart"];
+                                foreach (var item in cart)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>@item.Product.Name (x @item.Quantity)</span>
+                                        <span>$@(item.Product.Price * item.Quantity)</span>
+                                    </li>
+                                }
+                            }
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>TẠM TÍNH:</strong>
+                                <strong>$@totalAmount.ToString("F2")</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>TỔNG CỘNG:</strong>
+                                <strong>$@totalAmount.ToString("F2")</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // Function to dynamically load the PayPal SDK
+    function loadPayPalSDK(callback) {
+        console.log("Attempting to load PayPal SDK...");
+        var script = document.createElement('script');
+        script.src = 'https://www.paypal.com/sdk/js?client-id=AZ9FZ6EAEAjpwZPjtQHUDyspqmYnlCFg2uXooibQl2-0667u8XGNXbEMYQPHR3_cf1CG-A3a2ujPH0NW&currency=USD';
+        script.async = true;
+        script.onload = function () {
+            console.log("PayPal SDK loaded successfully.");
+            callback();
+        };
+        script.onerror = function () {
+            console.error("Failed to load PayPal SDK.");
+            $('#error-message').text("Không thể tải PayPal SDK. Vui lòng kiểm tra kết nối mạng hoặc thử lại sau.");
+        };
+        document.head.appendChild(script);
+    }
+
+    $(document).ready(function ($) {
+        console.log("PayPalCheckout page loaded.");
+
+        // Load PayPal SDK and render buttons
+        loadPayPalSDK(function () {
+            // Check if PayPal SDK is loaded
+            if (typeof paypal === 'undefined') {
+                console.error("PayPal SDK is still undefined after loading attempt.");
+                $('#error-message').text("PayPal SDK không khả dụng. Vui lòng thử lại sau.");
+                return;
+            }
+
+            console.log("Rendering PayPal buttons...");
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    console.log("Creating PayPal order...");
+                    var fullName = $('#FullName').val();
+                    var address = $('#Address').val();
+                    var email = $('#Email').val();
+
+                    if (!fullName || !address || !email) {
+                        console.warn("Validation failed: Missing required fields.");
+                        $('#error-message').text('Vui lòng điền đầy đủ thông tin trước khi thanh toán.');
+                        return Promise.reject('Missing required fields');
+                    }
+
+                    return $.ajax({
+                        type: 'POST',
+                        url: '/Home/CreatePayPalOrder',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            fullName: fullName,
+                            address: address,
+                            email: email
+                        }
+                    }).then(function (response) {
+                        console.log("CreatePayPalOrder response:", response);
+                        if (response.success) {
+                            console.log("Order created successfully. Total:", response.total);
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: response.total,
+                                        currency_code: 'USD'
+                                    }
+                                }]
+                            });
+                        } else {
+                            console.error("CreatePayPalOrder failed:", response.error);
+                            $('#error-message').text(response.error);
+                            return Promise.reject(response.error);
+                        }
+                    }).catch(function (xhr, status, error) {
+                        console.error("CreatePayPalOrder AJAX error:", status, error);
+                        $('#error-message').text('Đã xảy ra lỗi khi tạo đơn hàng. Vui lòng thử lại.');
+                        return Promise.reject('AJAX error');
+                    });
+                },
+                onApprove: function (data, actions) {
+                    console.log("PayPal payment approved. OrderID:", data.orderID);
+                    return $.ajax({
+                        type: 'POST',
+                        url: '/Home/CapturePayPalOrder',
+                        data: {
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                            orderID: data.orderID
+                        }
+                    }).then(function (response) {
+                        console.log("CapturePayPalOrder response:", response);
+                        if (response.success) {
+                            console.log("Payment captured successfully. Redirecting to:", response.redirectUrl);
+                            window.location.href = response.redirectUrl;
+                        } else {
+                            console.error("CapturePayPalOrder failed:", response.error);
+                            $('#error-message').text(response.error);
+                            return Promise.reject(response.error);
+                        }
+                    }).catch(function (xhr, status, error) {
+                        console.error("CapturePayPalOrder AJAX error:", status, error);
+                        $('#error-message').text('Đã xảy ra lỗi khi xử lý thanh toán. Vui lòng thử lại.');
+                        return Promise.reject('AJAX error');
+                    });
+                },
+                onError: function (err) {
+                    console.error("PayPal transaction error:", err);
+                    $('#error-message').text('Đã xảy ra lỗi trong quá trình giao dịch PayPal. Vui lòng thử lại.');
+                },
+                onCancel: function (data) {
+                    console.log("PayPal payment cancelled:", data);
+                    $('#error-message').text('Bạn đã hủy thanh toán. Vui lòng thử lại nếu muốn tiếp tục.');
+                }
+            }).render('#paypal-button-container').catch(function (err) {
+                console.error("PayPal button rendering failed:", err);
+                $('#error-message').text('Không thể hiển thị nút thanh toán PayPal. Vui lòng thử lại sau.');
+            });
+
+            console.log("PayPal button rendering initiated.");
+        });
+    });
+</script>
+
+<!-- Additional Styling -->
+<style>
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control:focus {
+        border-color: #86b7fe;
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #217aff;
+    }
+
+    .text-primary {
+        color: #217aff !important;
+    }
+
+    .text-muted {
+        color: #6c757d !important;
+    }
+</style>

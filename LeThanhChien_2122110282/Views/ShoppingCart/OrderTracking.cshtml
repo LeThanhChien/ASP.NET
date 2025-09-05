@@ -1,0 +1,433 @@
+﻿@model List<LeThanhChien_2122110282.Context.Order>
+
+@{
+    ViewBag.Title = "Theo Dõi Đơn Hàng";
+    // Get discounted product IDs and product data from ViewBag
+    var discountedProductIds = ViewBag.DiscountedProductIds as List<int> ?? new List<int>();
+    var productDict = ViewBag.Products as Dictionary<int, LeThanhChien_2122110282.Context.Product> ?? new Dictionary<int, LeThanhChien_2122110282.Context.Product>();
+}
+
+<!-- Font Awesome v6 for modern icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<!-- Google Fonts for professional typography -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="order-tracking-container" style="margin-top:100px">
+    <div class="order-tracking-header">
+        <h2 class="order-tracking-title">Theo Dõi Đơn Hàng</h2>
+        <p class="order-tracking-subtitle">Theo dõi trạng thái và chi tiết đơn hàng của bạn</p>
+
+        <!-- Display Success or Error Messages -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-error">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+    </div>
+
+    <div class="order-grid">
+        @{
+            // Group orders by OrderGroupId, with a fallback for invalid formats
+            var groupedOrders = Model
+                .GroupBy(o =>
+                {
+                    var parts = o.Name.Split(new[] { " | OrderID: " }, StringSplitOptions.None);
+                    return parts.Length > 1 ? parts[1] : o.Name; // Fallback to full Name if format is invalid
+                })
+                .Select(g => new
+                {
+                    OrderGroupId = g.Key,
+                    Orders = g.ToList(),
+                    CustomerName = g.First().Name.Contains(" | OrderID: ")
+                        ? g.First().Name.Split(new[] { " | OrderID: " }, StringSplitOptions.None)[0]
+                        : g.First().Name, // Fallback to full Name if format is invalid
+                    CreatedOnUtc = g.First().CreatedOnUtc,
+                    TotalPrice = g.Sum(o =>
+                    {
+                        if (o.ProductId.HasValue && productDict.TryGetValue(o.ProductId.Value, out var product))
+                        {
+                            var isDiscounted = discountedProductIds.Contains(o.ProductId.Value);
+                            var pricePerUnit = product.Price ?? 0;
+                            var quantity = o.Price.HasValue && pricePerUnit != 0 ? (int)(o.Price.Value / pricePerUnit) : 1;
+                            if (isDiscounted)
+                            {
+                                return (product.PriceDiscount ?? pricePerUnit) * quantity;
+                            }
+                            return pricePerUnit * quantity;
+                        }
+                        return o.Price ?? 0; // Fallback to original price if product not found or ProductId is null
+                    }),
+                    Status = g.First().Status // Assume same status for all items in group
+                })
+                .OrderByDescending(g => g.CreatedOnUtc);
+        }
+
+        @if (groupedOrders.Any())
+        {
+            foreach (var group in groupedOrders)
+            {
+                <div class="order-card">
+                    <div class="order-card-header">
+                        <h3 class="order-customer">Khách hàng: @group.CustomerName</h3>
+                        <span class="order-date">Ngày đặt hàng: @(group.CreatedOnUtc.ToString("dd/MM/yyyy"))</span>
+                    </div>
+                    <div class="order-card-body">
+                        <div class="order-detail">
+                            <span class="detail-label">Mã đơn hàng:</span>
+                            <span class="detail-value">@group.OrderGroupId</span>
+                        </div>
+                        <div class="order-detail">
+                            <span class="detail-label">Giá:</span>
+                            <span class="detail-value price">@(group.TotalPrice.ToString("N0")),000 đ</span>
+                        </div>
+                        <div class="order-detail">
+                            <span class="detail-label">Sản phẩm:</span>
+                            <ul class="product-list">
+                                @foreach (var item in group.Orders)
+                                {
+                                    if (item.ProductId.HasValue && productDict.TryGetValue(item.ProductId.Value, out var product))
+                                    {
+                                        var isDiscounted = discountedProductIds.Contains(item.ProductId.Value);
+                                        var pricePerUnit = product.Price ?? 0;
+                                        var quantity = item.Price.HasValue && pricePerUnit != 0 ? (int)(item.Price.Value / pricePerUnit) : 1;
+                                        var discountPercentage = isDiscounted ? Math.Round((((product.Price ?? 0) - (product.PriceDiscount ?? 0)) / (product.Price ?? 1)) * 100) : 0.0;
+
+                                        <li>
+                                            <span>@product.Name</span> (Số lượng: @quantity)
+                                            @if (isDiscounted)
+                                            {
+                                                <span>
+                                                    (Giá:
+                                                    <span style="text-decoration: line-through; color: #999; margin-right: 5px;">
+                                                        @(product.Price?.ToString("N0") ?? "0"),000 đ
+                                                    </span>
+                                                    <span style="color: #e74c3c;">
+                                                        @(product.PriceDiscount?.ToString("N0") ?? "0"),000 đ
+                                                    </span>
+                                                    <span style="color: #e74c3c; font-size: 0.9rem; margin-left: 5px;">
+                                                        (-@discountPercentage%)
+                                                    </span>)
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    (Giá: @(product.Price?.ToString("N0") ?? "0"),000 đ)
+                                                </span>
+                                            }
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            Mã sản phẩm: @(item.ProductId?.ToString() ?? "Không xác định")
+                                            (Giá: @(item.Price?.ToString("N0") ?? "0"),000 đ)
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="order-detail">
+                            <span class="detail-label">Trạng thái:</span>
+                            <span class="status status-icon">
+                                @if (group.Status == 1)
+                                {
+                                    <i class="fas fa-times-circle" title="Chưa Thanh Toán"></i>
+                                    <span>Chưa Thanh Toán</span>
+                                }
+                                else if (group.Status == 2)
+                                {
+                                    <i class="fas fa-truck" title="Đang Chờ Vận Chuyển"></i>
+                                    <span>Đang Chờ Vận Chuyển</span>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-check-circle" title="Đã Thanh Toán"></i>
+                                    <span>Đã Thanh Toán</span>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    <div class="order-card-footer">
+                        <a href="@Url.Action("OrderDetails", "ShoppingCart", new { id = group.Orders.First().Id })" class="btn-details">
+                            <i class="fas fa-eye"></i> Xem Chi Tiết
+                        </a>
+                        @if (group.Status == 1 || group.Status == 2) // Allow cancellation only for "Chưa Thanh Toán" or "Đang Chờ Vận Chuyển"
+                        {
+                            using (Html.BeginForm("CancelOrderGroup", "ShoppingCart", new { orderGroupId = group.OrderGroupId }, FormMethod.Post, new { @class = "cancel-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn-cancel">
+                                    <i class="fas fa-trash"></i> Hủy Đơn
+                                </button>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="no-orders-card">
+                <i class="fas fa-shopping-cart empty-cart"></i>
+                <p>Không có đơn hàng nào</p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* Existing styles remain unchanged */
+    .product-list {
+        margin: 0;
+        padding-left: 20px;
+        list-style-type: disc;
+        color: #343a40;
+    }
+
+        .product-list li {
+            margin-bottom: 5px;
+        }
+
+    /* General Styling */
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f7fc;
+        margin: 0;
+    }
+
+    .order-tracking-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .order-tracking-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .order-tracking-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1a3c7a;
+        margin-bottom: 10px;
+    }
+
+    .order-tracking-subtitle {
+        font-size: 16px;
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    /* Alerts */
+    .alert {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .alert-success {
+        background-color: #e6f4ea;
+        color: #2e7d32;
+    }
+
+    .alert-error {
+        background-color: #fce4e4;
+        color: #d32f2f;
+    }
+
+    /* Order Grid */
+    .order-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    /* Order Card */
+    .order-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+    .order-card-header {
+        background: linear-gradient(135deg, #1a3c7a, #2e5cb8);
+        padding: 16px 20px;
+        color: #ffffff;
+    }
+
+    .order-customer {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .order-date {
+        font-size: 13px;
+        opacity: 0.9;
+    }
+
+    .order-card-body {
+        padding: 20px;
+    }
+
+    .order-detail {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 14px;
+    }
+
+    .detail-label {
+        color: #6c757d;
+        font-weight: 500;
+    }
+
+    .detail-value {
+        color: #343a40;
+        font-weight: 600;
+    }
+
+        .detail-value.price {
+            color: #1a3c7a;
+        }
+
+    .status-icon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .status i {
+        font-size: 18px;
+    }
+
+        .status i.fa-times-circle {
+            color: #d32f2f;
+        }
+
+        .status i.fa-truck {
+            color: #f57c00;
+        }
+
+        .status i.fa-check-circle {
+            color: #2e7d32;
+        }
+
+    .order-card-footer {
+        padding: 0 20px 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+
+    /* No Orders Card */
+    .no-orders-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        text-align: center;
+        grid-column: 1 / -1;
+    }
+
+        .no-orders-card .empty-cart {
+            font-size: 48px;
+            color: #6c757d;
+            margin-bottom: 16px;
+        }
+
+        .no-orders-card p {
+            font-size: 18px;
+            color: #6c757d;
+            font-style: italic;
+            margin: 0;
+        }
+
+    /* Button Styling */
+    .btn-details {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #2e5cb8;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        .btn-details:hover {
+            background: #1a3c7a;
+            transform: translateY(-2px);
+        }
+
+        .btn-details:active {
+            transform: translateY(0);
+        }
+
+        .btn-details i {
+            font-size: 16px;
+        }
+
+    .btn-cancel {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #d32f2f;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        .btn-cancel:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel:active {
+            transform: translateY(0);
+        }
+
+        .btn-cancel i {
+            font-size: 16px;
+        }
+</style>
+
+<script>
+    // Confirm cancellation
+    document.querySelectorAll('.cancel-form').forEach(form => {
+        form.addEventListener('submit', (e) => {
+            if (!confirm('Bạn có chắc muốn hủy đơn hàng này không?')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>

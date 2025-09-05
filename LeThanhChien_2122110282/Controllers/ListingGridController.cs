@@ -14,10 +14,23 @@ namespace LeThanhChien_2122110282.Controllers
         // GET: ListingGrid
         public ActionResult AllListingGrid()
         {
-            HomeModel objHomeModel = new HomeModel();
-            objHomeModel.ListCategory = objCSDLASPEntities2.Categories.ToList();
-            objHomeModel.ListProduct = objCSDLASPEntities2.Products.ToList();
-            return View(objHomeModel);
+            var model = new HomeModel
+            {
+                ListCategory = objCSDLASPEntities2.Categories.ToList(),
+                ListProduct = objCSDLASPEntities2.Products.ToList()
+            };
+
+            // Calculate the top 8 discounted products
+            var discountedProductIds = objCSDLASPEntities2.Products
+                .Where(p => p.PriceDiscount.HasValue && p.PriceDiscount < p.Price)
+                .OrderByDescending(p => (p.Price - p.PriceDiscount) / p.Price)
+                .Take(8)
+                .Select(p => p.Id)
+                .ToList();
+
+            ViewBag.DiscountedProductIds = discountedProductIds;
+
+            return View(model);
         }
     }
 }

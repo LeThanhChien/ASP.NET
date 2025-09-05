@@ -15,5 +15,9 @@ namespace LeThanhChien_2122110282.Models
         public int ProductCount { get; set; }
         public int OrderCount { get; set; }
         public int MemberCount { get; set; }
+        public List<Order> ListOrder { get; set; }
+
+
+
     }
 }

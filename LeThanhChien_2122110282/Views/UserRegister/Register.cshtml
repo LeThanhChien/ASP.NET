@@ -1,78 +1,372 @@
 ﻿@model LeThanhChien_2122110282.Context.User
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Đăng Ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
-    <div class="card mx-auto" style="max-width: 520px; margin-top: 40px;">
-        <article class="card-body">
-            <header class="mb-4">
-                <h4 class="card-title">Đăng ký</h4>
-            </header>
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FirstName)
-                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First name" } })
-                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LastName)
-                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last name" } })
-                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email)
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password)
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "password", @placeholder = "Create password" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="showPassword">
-                        <div class="custom-control-label">Xem mật khẩu</div>
-                    </label>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IsAdmin)
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.IsAdmin)
-                        @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+<!-- Add Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Google Fonts for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Register Section -->
+<section class="register-section" style="margin-top:70px">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="register-card">
+                    <div class="register-header text-center mb-5">
+                        @if (ViewBag.error != null)
+                        {
+                            <div class="alert alert-danger">
+                                @ViewBag.error
+                            </div>
+                        }
+                        <h2 class="fw-bold text-primary mb-3">Tạo Tài Khoản Của Bạn</h2>
+                        <p class="text-muted">Tham gia với chúng tôi hôm nay để nhận những ưu đãi độc quyền!</p>
+                    </div>
+
+                    @using (Html.BeginForm("Register", "UserRegister", FormMethod.Post, new { @class = "needs-validation register-form", novalidate = "novalidate" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <!-- First Name -->
+                        <div class="mb-4 form-group">
+                            <label for="FirstName" class="form-label fw-bold">Tên</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control py-3", @placeholder = "Nhập tên của bạn", required = "required" })
+                            </div>
+                            <div class="invalid-feedback">Vui lòng nhập tên của bạn.</div>
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="mb-4 form-group">
+                            <label for="LastName" class="form-label fw-bold">Họ</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control py-3", @placeholder = "Nhập họ của bạn", required = "required" })
+                            </div>
+                            <div class="invalid-feedback">Vui lòng nhập họ của bạn.</div>
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-4 form-group">
+                            <label for="Email" class="form-label fw-bold">Địa Chỉ Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control py-3", @placeholder = "Nhập địa chỉ email của bạn", type = "email", required = "required" })
+                            </div>
+                            <small class="form-text text-muted">Email của bạn được bảo mật với chúng tôi.</small>
+                            <div class="invalid-feedback">Vui lòng nhập email hợp lệ.</div>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-4 form-group">
+                            <label for="Password" class="form-label fw-bold">Mật Khẩu</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control py-3 password-input", @id = "password", @placeholder = "Tạo một mật khẩu an toàn", required = "required" })
+                                <button type="button" class="btn toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Terms and Conditions Checkbox -->
+                        <div class="mb-4 form-group">
+                            <label class="form-check-label terms-label">
+                                <input type="checkbox" class="form-check-input terms-checkbox" required="required">
+                                Tôi đồng ý với <a href="@Url.Action("Terms", "Home")" class="text-primary hover-underline"> điều khoản và điều kiện</a>
+                            </label>
+                            <div class="invalid-feedback">Bạn phải đồng ý với điều khoản và điều kiện để tiếp tục.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-3 register-btn" style="margin-top:20px">
+                            <span class="btn-text"><i class="fas fa-sign-in-alt me-2"></i> ĐĂNG KÝ NGAY</span>
+                            <span class="btn-loading d-none"><i class="fas fa-spinner fa-spin me-2"></i> Đang xử lý...</span>
+                        </button>
+                    }
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted">
+                            Đã có tài khoản?
+                            @Html.ActionLink("Đăng nhập", "Login", "Home", new { @class = "text-primary fw-bold text-decoration-none hover-underline" }, null)
+                        </p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
-                </div>
-                <div class="form-group">
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" checked="">
-                        <div class="custom-control-label">I agree with <a href="#">terms and conditions</a></div>
-                    </label>
-                </div>
-            }
-        </article><!-- card-body.// -->
-    </div> <!-- card .// -->
-
-    <p class="text-center mt-4">Bạn đã có tài khoản? @Html.ActionLink("Đăng nhập", "Login", "Home")</p>
-    <br><br>
+            </div>
+        </div>
+    </div>
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- JavaScript to toggle password visibility -->
+
+<!-- JavaScript -->
 <script>
-    document.getElementById('showPassword').addEventListener('change', function() {
-        var passwordField = document.getElementById('password');
-        if (this.checked) {
-            passwordField.type = 'text';
-        } else {
-            passwordField.type = 'password';
+    document.addEventListener('DOMContentLoaded', function () {
+        // Password toggle
+        const toggleButton = document.querySelector('.toggle-password');
+        const passwordField = document.getElementById('password');
+
+        if (toggleButton && passwordField) {
+            toggleButton.addEventListener('click', function () {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
         }
+
+        // Form validation
+        const form = document.querySelector('.needs-validation');
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                // Show loading animation on submit
+                const registerBtn = form.querySelector('.register-btn');
+                const btnText = registerBtn.querySelector('.btn-text');
+                const btnLoading = registerBtn.querySelector('.btn-loading');
+                registerBtn.disabled = true;
+                btnText.classList.add('d-none');
+                btnLoading.classList.remove('d-none');
+            }
+            form.classList.add('was-validated');
+        }, false);
     });
 </script>
+
+<!-- Styling -->
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(#ffffff);
+        margin: 0;
+        padding: 0;
+    }
+
+    .register-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 40px 0;
+        background: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png') repeat;
+        background-attachment: fixed;
+    }
+
+    /* Register Card */
+    .register-card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        transform: translateY(0);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .register-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+    .register-header h2 {
+        font-size: 28px;
+        color: #1a3c7a;
+        letter-spacing: 0.5px;
+    }
+
+    .register-header p {
+        font-size: 16px;
+        color: #6c757d;
+    }
+
+    /* Alerts */
+    .alert-danger {
+        background-color: #fce4e4;
+        color: #d32f2f;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    /* Form Styling */
+    .form-group {
+        position: relative;
+    }
+
+    .form-label {
+        font-size: 14px;
+        color: #343a40;
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+    }
+
+    .input-group {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .input-group-text {
+        background: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-right: none;
+        border-radius: 8px 0 0 8px;
+        color: #6c757d;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 0 8px 8px 0;
+        padding: 12px 15px;
+        font-size: 14px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #1a3c7a;
+            box-shadow: 0 0 0 3px rgba(26, 60, 122, 0.1);
+            outline: none;
+        }
+
+        .form-control:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: #dc3545;
+        }
+
+    .invalid-feedback {
+        display: none;
+        font-size: 12px;
+        color: #dc3545;
+        margin-top: 5px;
+    }
+
+    .was-validated .form-control:invalid,
+    .form-control:invalid:not(:focus):not(:placeholder-shown) ~ .invalid-feedback,
+    .was-validated .form-check-input:invalid ~ .invalid-feedback {
+        display: block;
+    }
+
+    .form-text {
+        font-size: 12px;
+        color: #6c757d;
+    }
+
+    /* Password Toggle */
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        padding: 0 10px;
+        z-index: 10;
+        cursor: pointer;
+    }
+
+        .toggle-password i {
+            font-size: 16px;
+            color: #6c757d;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover i {
+            color: #1a3c7a;
+        }
+
+    .password-input {
+        padding-right: 50px !important;
+    }
+
+    /* Terms Checkbox */
+    .terms-label {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #343a40;
+        cursor: pointer;
+    }
+
+    .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+        .form-check-input:checked {
+            background-color: #1a3c7a;
+            border-color: #1a3c7a;
+        }
+
+        .form-check-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 122, 0.1);
+        }
+
+        .form-check-input:invalid:not(:focus) {
+            border-color: #dc3545;
+        }
+
+    /* Buttons */
+    .register-btn {
+        background: linear-gradient(135deg, #1a3c7a, #2e5cb8);
+        border: none;
+        font-size: 16px;
+        color: #ffffff;
+        letter-spacing: 1px;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, #2e5cb8, #1a3c7a);
+            transform: translateY(-2px);
+        }
+
+        .register-btn:active {
+            transform: translateY(0);
+        }
+
+    /* Links */
+    .hover-underline {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #1a3c7a;
+            transition: width 0.3s ease;
+        }
+
+        .hover-underline:hover {
+            color: #1a3c7a;
+        }
+
+            .hover-underline:hover::after {
+                width: 100%;
+            }
+
+    /* Validation Messages */
+    .text-danger {
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+    }
+</style>

@@ -1,317 +1,462 @@
 ﻿@model List<LeThanhChien_2122110282.Context.Product>
 
 @{
-    ViewBag.Title = "AllListingLarge";
+    ViewBag.Title = "Danh Sách Sản Phẩm";
+    // Get discounted product IDs from ViewBag
+    var discountedProductIds = ViewBag.DiscountedProductIds as List<int> ?? new List<int>();
 }
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
+<!-- Include jQuery for AJAX functionality -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- For confirmation dialogs -->
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Include Google Fonts for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script type="text/javascript">
+    $(function () {
+        $('.add-to-wishlist').on('click', function (e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productId = $button.data('product-id');
+            var quantity = 1; // Default quantity
+
+            if (!productId) {
+                alert('Không thể thêm vào danh sách yêu thích: ID sản phẩm không hợp lệ.');
+                return;
+            }
+
+            // Determine if the item is being added or removed
+            var isAdding = !$button.hasClass('added');
+
+            $.ajax({
+                type: 'POST',
+                url: isAdding ? '@Url.Action("AddToWishlist", "ShoppingCart")' : '@Url.Action("RemoveFromWishlist", "ShoppingCart")',
+                data: JSON.stringify({ Id: productId, Quantity: quantity }),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    if (response.success) {
+                        if (isAdding) {
+                            $button.addClass('added');
+                            Swal.fire('Thành công!', 'Đã thêm vào mục yêu thích thành công!', 'success');
+                        } else {
+                            $button.removeClass('added');
+                            alert('Đã xóa khỏi danh sách yêu thích thành công!');
+                        }
+                        $('#WishlistCount').text(response.wishlistCount);
+                    } else {
+                        alert('Có lỗi xảy ra: ' + response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('Có lỗi xảy ra: ' + xhr.responseText);
+                }
+            });
+        });
+
+        $(".addtocart").click(function () {
+            var id = $(this).closest('.product-card').find('input[name="num-product"]').attr('id').split('_')[1];
+            var quantity = $(this).closest('.product-card').find('input[name="num-product"]').val();
+
+            const model = {
+                Id: parseInt(id),
+                Quantity: parseInt(quantity)
+            };
+            console.log("Sending:", JSON.stringify(model));
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "ShoppingCart")',
+                data: JSON.stringify(model),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    Swal.fire('Thành công!', 'Thêm vào giỏ hàng thành công!', 'success');
+                    $('#CartCount').text(response.count);
+                },
+                error: function (xhr, status, error) {
+                    console.log("Status:", status);
+                    console.log("Error:", error);
+                    console.log("Response:", xhr.responseText);
+                    alert("Đã xảy ra lỗi khi thêm vào giỏ hàng: " + xhr.responseText);
+                }
+            });
+            return false;
+        });
+
+        // Quantity increment/decrement functionality
+        $('.btn-num-product-up').click(function () {
+            var input = $(this).siblings('input[name="num-product"]');
+            var value = parseInt(input.val());
+            input.val(value + 1);
+        });
+
+        $('.btn-num-product-down').click(function () {
+            var input = $(this).siblings('input[name="num-product"]');
+            var value = parseInt(input.val());
+            if (value > 1) {
+                input.val(value - 1);
+            }
+        });
+    });
+</script>
+
+<!-- Breadcrumb Section -->
+<div class="container" style="margin-top:100px">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="@Url.Action("Index","Home")" class="stext-109 cl8 hov-cl1 trans-04">
+            Trang Chủ
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="@Url.Action("AllListingGrid","ListingGrid")" class="stext-109 cl8 hov-cl1 trans-04">
+            Cửa Hàng
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">
+            Kết Quả
+        </span>
+    </div>
+</div>
+
+<!-- Product Grid Section -->
+<section class="section-content padding-y" style="margin-top:10px; margin-bottom:20px">
     <div class="container">
-
-
-        <!-- ============================  FILTER TOP  ================================= -->
-        <div class="card mb-3">
-            <div class="card-body">
-                <ol class="breadcrumb float-left">
-                    <li class="breadcrumb-item"><a href="#">@Html.ActionLink("Trang chủ", "Index", "Home", new { }, null)</a></li>
-                    <li class="breadcrumb-item"><a href="@Url.Action("AllCategory","Category")">Tên danh mục</a></li>
-                    <li class="breadcrumb-item active">Sản phẩm</li>
-                </ol>
-            </div> <!-- card-body .// -->
-        </div> <!-- card.// -->
-        <!-- ============================ FILTER TOP END.// ================================= -->
-
-
         <div class="row">
-            <aside class="col-md-2">
+            @foreach (var item in Model)
+            {
+                // Determine if the product is in the discounted list
+                var isDiscounted = discountedProductIds.Contains(item.Id);
+                var priceToUse = isDiscounted && item.PriceDiscount.HasValue && item.PriceDiscount.Value < (item.Price ?? 0)
+                    ? item.PriceDiscount.Value
+                    : (item.Price ?? 0);
+                var discountPercentage = isDiscounted && item.PriceDiscount.HasValue && item.PriceDiscount.Value < (item.Price ?? 0)
+                    ? Math.Round((((item.Price ?? 0) - item.PriceDiscount.Value) / (item.Price ?? 1)) * 100)
+                    : 0.0;
 
-                <article class="filter-group">
-                    <h6 class="title">
-                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">	 Product type </a>
-                    </h6>
-                    <div class="filter-content collapse show" id="collapse_1" style="">
-                        <div class="inner">
-                            <ul class="list-menu">
-                                <li><a href="#">Shorts  </a></li>
-                                <li><a href="#">Trousers </a></li>
-                                <li><a href="#">Sweaters  </a></li>
-                                <li><a href="#">Clothes  </a></li>
-                                <li><a href="#">Home items </a></li>
-                                <li><a href="#">Jackats</a></li>
-                                <li><a href="#">Somethings </a></li>
-                            </ul>
-                        </div> <!-- inner.// -->
-                    </div>
-                </article> <!-- filter-group  .// -->
-                <article class="filter-group">
-                    <h6 class="title">
-                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2"> Brands </a>
-                    </h6>
-                    <div class="filter-content collapse show" id="collapse_2">
-                        <div class="inner">
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    Adidas
-                                    <b class="badge badge-pill badge-light float-right">120</b>
-                                </div>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    Nike
-                                    <b class="badge badge-pill badge-light float-right">15</b>
-                                </div>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    The Noth Face
-                                    <b class="badge badge-pill badge-light float-right">35</b>
-                                </div>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    The cat
-                                    <b class="badge badge-pill badge-light float-right">89</b>
-                                </div>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    Honda
-                                    <b class="badge badge-pill badge-light float-right">30</b>
-                                </div>
-                            </label>
-                        </div> <!-- inner.// -->
-                    </div>
-                </article> <!-- filter-group .// -->
-                <article class="filter-group">
-                    <h6 class="title">
-                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3"> Price range </a>
-                    </h6>
-                    <div class="filter-content collapse show" id="collapse_3">
-                        <div class="inner">
-                            <input type="range" class="custom-range" min="0" max="100" name="">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Min</label>
-                                    <input class="form-control" placeholder="$0" type="number">
-                                </div>
-                                <div class="form-group text-right col-md-6">
-                                    <label>Max</label>
-                                    <input class="form-control" placeholder="$1,0000" type="number">
-                                </div>
-                            </div> <!-- form-row.// -->
-                            <button class="btn btn-block btn-primary">Apply</button>
-                        </div> <!-- inner.// -->
-                    </div>
-                </article> <!-- filter-group .// -->
-                <article class="filter-group">
-                    <h6 class="title">
-                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_4"> Sizes </a>
-                    </h6>
-                    <div class="filter-content collapse show" id="collapse_4">
-                        <div class="inner">
-                            <label class="checkbox-btn">
-                                <input type="checkbox">
-                                <span class="btn btn-light"> XS </span>
-                            </label>
-
-                            <label class="checkbox-btn">
-                                <input type="checkbox">
-                                <span class="btn btn-light"> SM </span>
-                            </label>
-
-                            <label class="checkbox-btn">
-                                <input type="checkbox">
-                                <span class="btn btn-light"> LG </span>
-                            </label>
-
-                            <label class="checkbox-btn">
-                                <input type="checkbox">
-                                <span class="btn btn-light"> XXL </span>
-                            </label>
-                        </div> <!-- inner.// -->
-                    </div>
-                </article> <!-- filter-group .// -->
-                <article class="filter-group">
-                    <h6 class="title">
-                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5"> Condition </a>
-                    </h6>
-                    <div class="filter-content collapse show" id="collapse_5">
-                        <div class="inner">
-                            <label class="custom-control custom-radio">
-                                <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
-                                <div class="custom-control-label">Any condition</div>
-                            </label>
-
-                            <label class="custom-control custom-radio">
-                                <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                <div class="custom-control-label">Brand new </div>
-                            </label>
-
-                            <label class="custom-control custom-radio">
-                                <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                <div class="custom-control-label">Used items</div>
-                            </label>
-
-                            <label class="custom-control custom-radio">
-                                <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                <div class="custom-control-label">Very old</div>
-                            </label>
-                        </div> <!-- inner.// -->
-                    </div>
-                </article> <!-- filter-group .// -->
-
-            </aside> <!-- col.// -->
-            <main class="col-md-10">
-
-
-                <!--<header class="mb-3">
-                    <div class="form-inline">
-                        <strong class="mr-md-auto">32 Items found </strong>
-                        <select class="mr-2 form-control">
-                            <option>Latest items</option>
-                            <option>Trending</option>
-                            <option>Most Popular</option>
-                            <option>Cheapest</option>
-                        </select>
-                        <div class="btn-group">
-                            <a href="page-listing-grid.html" class="btn btn-light" data-toggle="tooltip" title="List view">
-                                <i class="fa fa-bars"></i>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="product-card card border-0 shadow-sm rounded-lg h-100">
+                        <!-- Product Image -->
+                        <div class="product-image position-relative">
+                            <a href="@Url.Action("Detail", "Product", new { Id = item.Id })">
+                                <img src="~/Content/images1/@item.Avatar" class="card-img-top rounded-top" alt="@item.Name" style="height: 250px; object-fit: cover;">
                             </a>
-                            <a href="page-listing-large.html" class="btn btn-light active" data-toggle="tooltip" title="Grid view">
-                                <i class="fa fa-th"></i>
+                            <span class="badge badge-danger position-absolute top-0 start-0 m-3">MỚI</span>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title mb-2">
+                                <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="text-primary text-decoration-none">@item.Name</a>
+                            </h5>
+
+                            <!-- Rating -->
+                            <div class="rating-wrap mb-3 d-flex align-items-center">
+                                <ul class="rating-stars d-flex me-2 p-0">
+                                    <li style="width:90%; color:gold;" class="stars-active">
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half"></i>
+                                    </li>
+                                    <li style="width:10%; color:lightgray;" class="stars-inactive">
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <span class="label-rating">4.5</span>
+                            </div>
+
+                            <!-- Short Description -->
+                            <p class="text-muted mb-2">
+                                <i class="fa fa-check text-success me-1"></i>@item.ShortDes
+                            </p>
+
+                            <!-- Full Description -->
+                            <p class="card-text flex-grow-1">@item.FullDescription</p>
+
+                            <!-- Price -->
+                            <div class="price-wrap mb-3">
+                                @if (isDiscounted && item.PriceDiscount.HasValue && item.PriceDiscount.Value < (item.Price ?? 0))
+                                {
+                                    <span class="h4 text-success font-weight-bold">
+                                        @string.Format("{0:N0}", item.PriceDiscount.Value * 1000) đ
+                                    </span>
+                                    <span style="text-decoration: line-through; color: #999; margin-left: 10px;">
+                                        @string.Format("{0:N0}", (item.Price ?? 0) * 1000) đ
+                                    </span>
+                                    <span style="color: #e74c3c; font-size: 0.9rem; margin-left: 10px;">
+                                        (-@discountPercentage%)
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="h4 text-success font-weight-bold">
+                                        @string.Format("{0:N0}", (item.Price ?? 0) * 1000) đ
+                                    </span>
+                                }
+                                <small class="text-muted">/mỗi sản phẩm</small>
+                            </div>
+
+                            <!-- Quantity Selector and Add to Cart -->
+                            <div class="d-flex align-items-center justify-content-between mt-auto">
+                                <div class="wrap-num-product d-flex align-items-center">
+                                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                        <i class="fs-16 zmdi zmdi-minus"></i>
+                                    </div>
+                                    <input id="ipQuantity_@item.Id" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" min="1">
+                                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                        <i class="fs-16 zmdi zmdi-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="block2-txt-child2 flex-r p-t-3">
+                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 add-to-wishlist" data-product-id="@item.Id">
+                                        <img class="icon-heart1 dis-block trans-04" src="~/Content/images1/icons/icon-heart-01.png" alt="ICON">
+                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/Content/images1/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="#" class="addtocart rounded-pill px-4 py-2">
+                                <i class="fas fa-cart-plus me-2"></i>Thêm Vào Giỏ Hàng
                             </a>
+                            <!-- Wishlist Icon -->
                         </div>
                     </div>
-                </header>--><!-- sect-heading -->
-
-                @foreach (var item in Model)
-                {
-                    <article class="card card-product-list">
-                        <div class="row no-gutters">
-                            <aside class="col-md-3">
-                                <a href="#" class="img-wrap">
-                                    <span class="badge badge-danger"> NEW </span>
-                                    <img src="~/Content/images/items/@item.Avatar">
-                                </a>
-                            </aside> <!-- col.// -->
-                            <div class="col-md-6">
-                                <div class="info-main">
-                                    <a href="#" class="h5 title">
-                                        @Html.ActionLink(item.Name, "Detail", "Product", new { Id = item.Id }, null)
-                                    </a>
-                                    <div class="rating-wrap mb-2">
-                                        <ul class="rating-stars">
-                                            <li style="width:100%" class="stars-active">
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="label-rating">9/10</div>
-                                    </div> <!-- rating-wrap.// -->
-
-                                    <p class="mb-3">
-                                        <span class="tag"> <i class="fa fa-check"></i> Verified</span>
-                                        <span class="tag"> 5 Years </span>
-                                        <span class="tag"> 80 reviews </span>
-                                        <span class="tag"> Russia </span>
-                                    </p>
-
-                                    <p>
-                                        @item.ShortDes
-                                    </p>
-
-                                </div> <!-- info-main.// -->
-                            </div> <!-- col.// -->
-                            <aside class="col-sm-3">
-                                <div class="info-aside">
-                                    <div class="price-wrap">
-                                        <span class="h5 price">@item.Price</span>
-                                        <small class="text-muted">/per item</small>
-                                    </div> <!-- price-wrap.// -->
-                                    <small class="text-warning">Paid shipping</small>
-
-                                    <p class="text-muted mt-3">Grand textile Co</p>
-                                    <p class="mt-3">
-                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact supplier </a>
-                                        <a href="#" class="btn btn-light"><i class="fa fa-heart"></i> Save </a>
-                                    </p>
-
-                                    <label class="custom-control mt-3 custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
-                                        <div class="custom-control-label">
-                                            Add to compare
-                                        </div>
-                                    </label>
-
-                                </div> <!-- info-aside.// -->
-                            </aside> <!-- col.// -->
-                        </div> <!-- row.// -->
-                    </article> <!-- card-product .// -->
-
-                }
-
-
-
-
-                    @*<nav class="mb-4" aria-label="Page navigation sample">
-                        <ul class="pagination">
-                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>*@
-
-
-                    <div class="box text-center">
-                        <p>Did you find what you were looking for？</p>
-                        <a href="" class="btn btn-light">Yes</a>
-                        <a href="" class="btn btn-light">No</a>
-                    </div>
-
-
-                </main> <!-- col.// -->
-
+                </div>
+            }
         </div>
-
-    </div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= SECTION SUBSCRIBE  ========================= -->
-<section class="padding-y-lg bg-light border-top">
-    <div class="container">
-
-        <p class="pb-2 text-center">Delivering the latest product trends and industry news straight to your inbox</p>
-
-        <div class="row justify-content-md-center">
-            <div class="col-lg-4 col-sm-6">
-                <form class="form-row">
-                    <div class="col-8">
-                        <input class="form-control" placeholder="Your Email" type="email">
-                    </div> <!-- col.// -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
-                    </div> <!-- col.// -->
-                </form>
-                <small class="form-text">We’ll never share your email address with a third-party. </small>
-            </div> <!-- col-md-6.// -->
-        </div>
-
-
     </div>
 </section>
-<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #f8f9fa;
+    }
+
+    .section-content {
+        padding: 40px 0;
+    }
+
+    /* Product Card Styling */
+    .product-card {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+    .product-image img {
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
+
+        .product-image img:hover {
+            transform: scale(1.05);
+        }
+
+    .badge-danger {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+        border-radius: 12px;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+        .card-title a:hover {
+            color: #0d6efd;
+        }
+
+    .rating-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .rating-stars {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 4px;
+    }
+
+    .stars-active i, .stars-inactive i {
+        font-size: 1.2rem;
+    }
+
+    .label-rating {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+        color: #6c757d;
+        line-height: 1.5;
+    }
+
+    .price-wrap {
+        text-align: left;
+    }
+
+        .price-wrap .h4 {
+            font-size: 1.5rem;
+        }
+
+        .price-wrap small {
+            font-size: 0.85rem;
+        }
+
+    /* Quantity Selector */
+    .wrap-num-product {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .btn-num-product-down, .btn-num-product-up {
+        width: 40px;
+        height: 40px;
+        background: #f8f9fa;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+        .btn-num-product-down:hover, .btn-num-product-up:hover {
+            background: #e9ecef;
+        }
+
+    .num-product {
+        width: 60px;
+        height: 40px;
+        border: none;
+        border-left: 1px solid #dee2e6;
+        border-right: 1px solid #dee2e6;
+        text-align: center;
+        font-size: 1rem;
+        background: #ffffff;
+    }
+
+        .num-product:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2);
+        }
+
+    /* Add to Cart Button */
+    .product-card .card-body .addtocart {
+        font-size: 1rem !important; /* Ensure font size is applied */
+        font-weight: 500 !important;
+        background: linear-gradient(135deg, #0d6efd, #42a5f5) !important; /* Gradient background */
+        border: none !important;
+        border-radius: 50px !important; /* Pill-shaped button */
+        padding: 12px 40px !important; /* Increased padding for more space */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important; /* Space between icon and text */
+        color: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3) !important; /* Subtle shadow */
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease !important;
+        width: 100% !important; /* Full width of its container */
+        max-width: 220px !important; /* Slightly increased max-width */
+        min-width: 200px !important; /* Ensure minimum width to fit text */
+        margin: 10px auto 0 !important; /* Center with spacing */
+        white-space: nowrap !important; /* Prevent text wrapping */
+        text-align: center !important; /* Ensure text is centered */
+    }
+
+        .product-card .card-body .addtocart:hover {
+            background: linear-gradient(135deg, #42a5f5, #0d6efd) !important;
+            transform: translateY(-3px) !important; /* Lift on hover */
+            box-shadow: 0 6px 15px rgba(13, 110, 253, 0.4) !important; /* Enhanced shadow */
+        }
+
+        .product-card .card-body .addtocart:active {
+            transform: translateY(0) !important; /* Press-down effect */
+            box-shadow: 0 2px 5px rgba(13, 110, 253, 0.2) !important; /* Reduced shadow */
+        }
+
+        .product-card .card-body .addtocart i {
+            font-size: 1.2rem !important; /* Slightly larger icon */
+        }
+
+    /* Wishlist Icon */
+    .btn-addwish-b2 {
+        position: relative;
+        display: inline-block;
+        border: none !important; /* Ensure no border on the button */
+        background: none !important; /* Ensure no background color */
+        padding: 0; /* Remove padding */
+    }
+
+    .icon-heart1, .icon-heart2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        width: 20px; /* Adjust size if needed */
+        height: 20px; /* Adjust size if needed */
+        border: none !important; /* Ensure no border on the icons */
+        background: none !important; /* Ensure no background */
+    }
+
+    .icon-heart2 {
+        opacity: 0; /* Hidden by default */
+    }
+
+    .btn-addwish-b2.added .icon-heart1 {
+        opacity: 0; /* Hide empty heart when added */
+    }
+
+    .btn-addwish-b2.added .icon-heart2 {
+        opacity: 1; /* Show filled heart when added */
+    }
+
+    /* Ensure parent elements don't add unwanted styles */
+    .block2-txt-child2 {
+        border: none !important; /* Remove border from parent container */
+        background: none !important; /* Remove background from parent */
+    }
+
+    /* Remove hover effects that might add a red border */
+    .btn-addwish-b2:hover,
+    .btn-addwish-b2:focus {
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important; /* Remove any shadow */
+    }
+
+    /* Breadcrumb Styling */
+    .stext-109 {
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .cl8 {
+        color: #6c757d;
+    }
+
+    .hov-cl1:hover {
+        color: #0d6efd;
+    }
+
+    .trans-04 {
+        transition: all 0.3s ease;
+    }
+</style>

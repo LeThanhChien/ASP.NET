@@ -1,0 +1,440 @@
+﻿@model List<LeThanhChien_2122110282.Context.Order>
+
+@{
+    ViewBag.Title = "Chi Tiết Đơn Hàng";
+    var db = new LeThanhChien_2122110282.Context.CSDLASPEntities2();
+    var customerName = Model.Any() ? Model.First().Name.Split(new[] { " | OrderID: " }, StringSplitOptions.None)[0] : "N/A";
+    var orderGroupId = Model.Any() ? Model.First().Name.Split(new[] { " | OrderID: " }, StringSplitOptions.None)[1] : "N/A";
+    var status = Model.FirstOrDefault()?.Status;
+
+    // Fetch all products to identify discounted ones
+    var products = db.Products.ToList();
+    var productDict = products.ToDictionary(p => p.Id, p => p);
+    var discountedProducts = products
+        .Where(p => p.PriceDiscount.HasValue && p.PriceDiscount < p.Price)
+        .OrderByDescending(p => (p.Price - p.PriceDiscount) / p.Price)
+        .Take(8)
+        .ToList();
+    var discountedProductIds = discountedProducts.Select(p => p.Id).ToList();
+
+    // Calculate total price considering discounts
+    var totalPrice = Model.Sum(o =>
+    {
+        if (o.ProductId.HasValue && productDict.TryGetValue(o.ProductId.Value, out var product))
+        {
+            var isDiscounted = discountedProductIds.Contains(o.ProductId.Value);
+            var pricePerUnit = product.Price ?? 0;
+            var quantity = o.Price.HasValue && pricePerUnit != 0 ? (int)(o.Price.Value / pricePerUnit) : 1;
+            if (isDiscounted)
+            {
+                return (product.PriceDiscount ?? pricePerUnit) * quantity;
+            }
+            return pricePerUnit * quantity;
+        }
+        return o.Price ?? 0;
+    });
+}
+
+<!-- Font Awesome v6 for modern icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<!-- Google Fonts for professional typography -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="order-details-container" style="margin-top:100px">
+    <div class="order-details-card">
+        <h2 class="order-details-title">Chi Tiết Đơn Hàng</h2>
+        <p class="order-details-subtitle">Thông tin chi tiết về đơn hàng của bạn</p>
+
+        <!-- Display Success or Error Messages -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-error">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        @if (Model.Any())
+        {
+            <div class="order-info">
+                <div class="info-section">
+                    <h3>Thông Tin Khách Hàng</h3>
+                    <p><strong>Tên:</strong> @customerName</p>
+                    <!-- Add more customer info if available, e.g., address, phone -->
+                </div>
+                <div class="info-section">
+                    <h3>Thông Tin Đơn Hàng</h3>
+                    <p><strong>Mã đơn hàng:</strong> @orderGroupId</p>
+                    <p><strong>Ngày tạo:</strong> @(Model.First().CreatedOnUtc.ToString("dd/MM/yyyy HH:mm"))</p>
+                    <p>
+                        <strong>Trạng thái:</strong>
+                        @if (status == 1)
+                        {
+                            <span class="status-icon"><i class="fas fa-times-circle"></i> Chưa Thanh Toán</span>
+                        }
+                        else if (status == 2)
+                        {
+                            <span class="status-icon"><i class="fas fa-truck"></i> Đang Chờ Vận Chuyển</span>
+                        }
+                        else
+                        {
+                            <span class="status-icon"><i class="fas fa-check-circle"></i> Đã Thanh Toán</span>
+                        }
+                    </p>
+                    <p><strong>Tổng tiền:</strong> @(totalPrice.ToString("N0")),000 đ</p>
+                </div>
+            </div>
+
+            <div class="order-items">
+                <h3>Chi Tiết Sản Phẩm</h3>
+                <div class="table-responsive">
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th>Ảnh Sản Phẩm</th>
+                                <th>Mã Sản Phẩm</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Giá</th>
+                                <th>Tổng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                var product = productDict.ContainsKey(order.ProductId ?? 0) ? productDict[order.ProductId.Value] : null;
+                                var productName = product != null ? product.Name : "Sản Phẩm Không Xác Định";
+                                var isDiscounted = product != null && discountedProductIds.Contains(product.Id);
+                                var pricePerUnit = product != null && product.Price.HasValue ? product.Price.Value : 0;
+                                var quantity = order.Price.HasValue && pricePerUnit != 0 ? (int)(order.Price.Value / pricePerUnit) : 1;
+                                var discountPercentage = isDiscounted ? Math.Round(((product.Price - product.PriceDiscount) / product.Price * 100) ?? 0) : 0;
+                                var imagePath = product != null && !string.IsNullOrEmpty(product.Avatar)
+                                    ? Url.Content("~/Content/images1/" + product.Avatar)
+                                    : Url.Content("~/Content/images1/default-image.jpg"); // Fallback image
+                                var itemTotal = isDiscounted ? (product.PriceDiscount ?? pricePerUnit) * quantity : pricePerUnit * quantity;
+
+                                <tr>
+                                    <td>
+                                        <img src="@imagePath" alt="@productName" class="product-image" />
+                                    </td>
+                                    <td>@(order.ProductId?.ToString() ?? "N/A")</td>
+                                    <td>@productName</td>
+                                    <td>@quantity</td>
+                                    <td>
+                                        @if (isDiscounted)
+                                        {
+                                            <span style="text-decoration: line-through; color: #999; margin-right: 5px;">
+                                                @(product.Price?.ToString("N0") ?? "0"),000 đ
+                                            </span>
+                                            <span style="color: #e74c3c;">
+                                                @(product.PriceDiscount?.ToString("N0") ?? "0"),000 đ
+                                            </span>
+                                            <span style="color: #e74c3c; font-size: 0.9rem; margin-left: 5px;">
+                                                (-@discountPercentage%)
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                @(product != null && product.Price.HasValue ? product.Price.Value.ToString("N0") : "0"),000 đ
+                                            </span>
+                                        }
+                                    </td>
+                                    <td>@(itemTotal.ToString("N0")),000 đ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="order-actions">
+                <a href="@Url.Action("OrderTracking", "ShoppingCart")" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Quay Lại
+                </a>
+                @if (status == 1 || status == 2)
+                {
+                    using (Html.BeginForm("CancelOrderGroup", "ShoppingCart", new { orderGroupId = orderGroupId }, FormMethod.Post, new { @class = "cancel-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn-cancel">
+                            <i class="fas fa-trash"></i> Hủy Đơn
+                        </button>
+                    }
+                }
+            </div>
+        }
+        else
+        {
+            <div class="no-orders">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Đơn hàng không tồn tại.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* Existing styles remain mostly unchanged */
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f7fc;
+        margin: 0;
+    }
+
+    .order-details-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .order-details-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+    }
+
+    .order-details-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1a3c7a;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .order-details-subtitle {
+        font-size: 16px;
+        color: #6c757d;
+        text-align: center;
+        font-style: italic;
+        margin-bottom: 30px;
+    }
+
+    /* Alerts */
+    .alert {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .alert-success {
+        background-color: #e6f4ea;
+        color: #2e7d32;
+    }
+
+    .alert-error {
+        background-color: #fce4e4;
+        color: #d32f2f;
+    }
+
+    /* Order Info */
+    .order-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .info-section {
+        background: #f8fafc;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+        .info-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a3c7a;
+            margin-bottom: 16px;
+        }
+
+        .info-section p {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #343a40;
+        }
+
+            .info-section p strong {
+                color: #6c757d;
+                margin-right: 8px;
+            }
+
+    .status-icon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .status-icon i {
+            font-size: 18px;
+        }
+
+            .status-icon i.fa-times-circle {
+                color: #d32f2f;
+            }
+
+            .status-icon i.fa-truck {
+                color: #f57c00;
+            }
+
+            .status-icon i.fa-check-circle {
+                color: #2e7d32;
+            }
+
+    /* Order Items 시간을 */
+    .order-items {
+        margin-bottom: 40px;
+    }
+
+        .order-items h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a3c7a;
+            margin-bottom: 16px;
+        }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .items-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .items-table th,
+        .items-table td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            color: #343a40;
+        }
+
+        .items-table th {
+            background: linear-gradient(135deg, #1a3c7a, #2e5cb8);
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .items-table tr {
+            transition: background-color 0.3s ease;
+        }
+
+            .items-table tr:hover {
+                background-color: #f1f5f9;
+            }
+
+    /* Product Image */
+    .product-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    /* No Orders */
+    .no-orders {
+        text-align: center;
+        padding: 40px;
+    }
+
+        .no-orders i {
+            font-size: 48px;
+            color: #6c757d;
+            margin-bottom: 16px;
+        }
+
+        .no-orders p {
+            font-size: 18px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+    /* Order Actions */
+    .order-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+
+    .btn-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        .btn-back:hover {
+            background: #5c636a;
+            transform: translateY(-2px);
+        }
+
+        .btn-back:active {
+            transform: translateY(0);
+        }
+
+        .btn-back i {
+            font-size: 16px;
+        }
+
+    .btn-cancel {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #d32f2f;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        .btn-cancel:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel:active {
+            transform: translateY(0);
+        }
+
+        .btn-cancel i {
+            font-size: 16px;
+        }
+</style>
+
+<script>
+    // Confirm cancellation
+    document.querySelectorAll('.cancel-form').forEach(form => {
+        form.addEventListener('submit', (e) => {
+            if (!confirm('Bạn có chắc muốn hủy đơn hàng này không?')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
